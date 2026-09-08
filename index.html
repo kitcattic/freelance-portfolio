@@ -4,6 +4,102 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Andrew - Portfolio</title>
+
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/responsive.css" />
+
+        <script src="js/script.js" defer></script>
+        <script src="js/translation.js" defer></script>
     </head>
-    <body></body>
+    <body>
+        <header>
+            <h2 class="logo" data-i18n="logo">Andrew</h2>
+
+            <nav class="nav">
+                <a href="#home" data-i18n="homeNav">Home</a>
+                <a href="#projects" data-i18n="projectsNav">Projects</a>
+                <a href="#about" data-i18n="aboutNav">About</a>
+                <a href="#contact" data-i18n="contactNav">Contact</a>
+            </nav>
+
+            <div class="language-switch">
+                <button type="button" data-lang="en" class="active">EN</button>
+                <button type="button" data-lang="ru">RU</button>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero" id="home">
+                <div class="hero__content">
+                    <h1 class="hero__title" data-i18n="heroTitle">
+                        I BUILD MODERN WEBSITES THAT WORK
+                    </h1>
+
+                    <div class="hero__bottom">
+                        <p
+                            class="hero__description"
+                            data-i18n="heroDescription"
+                        >
+                            I'm a frontend developer focused on creating clean,
+                            responsive and user-friendly websites for businesses
+                            and personal brands.
+                        </p>
+
+                        <div class="hero__actions">
+                            <a
+                                href="#projects"
+                                class="button"
+                                data-i18n="heroProjects"
+                            >
+                                View my work
+                            </a>
+
+                            <a
+                                href="#contact"
+                                class="button button--outline"
+                                data-i18n="heroContact"
+                            >
+                                Contact me
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero__image">
+                    <img
+                        src="assets/images/hero.webp"
+                        alt="Working on a laptop"
+                    />
+                </div>
+            </section>
+
+            <section class="projects" id="projects">
+                <div class="container">
+                    <div class="projects__header">
+                        <h2 class="projects__title" data-i18n="projectsTitle">
+                            SELECTED WORK
+                        </h2>
+
+                        <p
+                            class="projects__description"
+                            data-i18n="projectsDescription"
+                        >
+                            A selection of projects I've designed and developed
+                            from concept to final implementation.
+                        </p>
+                    </div>
+
+                    <div class="projects__grid">
+                        <!-- Projects will be rendered here -->
+                    </div>
+
+                    <div class="projects__footer">
+                        <span data-i18n="projectsComing">
+                            More projects coming soon
+                        </span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
 </html>
