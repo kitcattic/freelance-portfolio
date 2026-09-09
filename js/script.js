@@ -27,11 +27,11 @@ function createProjectCard(project) {
                     <h3 class="project-card__title">
                         ${project.title[currentLanguage]}
                     </h3>
-                </div>
 
-                <p class="project-card__category">
-                    ${project.category[currentLanguage]}
-                </p>
+                    <p class="project-card__category">
+                        ${project.category[currentLanguage]}
+                    </p>
+                </div>
 
                 <p class="project-card__description">
                     ${project.description[currentLanguage]}
@@ -47,7 +47,7 @@ function createProjectCard(project) {
             </div>
 
             <div class="project-card__right">
-                <a
+                <a class="project-card__link"
                     href="${project.url}"
                     class="project-card__link"
                     target="_blank"
@@ -82,9 +82,9 @@ function createProjectCard(project) {
                     </svg>
                 </a>
 
-                <span class="project-card__year">
+                <p class="project-card__year">
                     ${project.year}
-                </span>
+                </p>
             </div>
         </div>`;
 
