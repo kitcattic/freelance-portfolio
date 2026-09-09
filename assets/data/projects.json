@@ -1,0 +1,41 @@
+[
+    {
+        "name": "nordform-architects",
+        "title": {
+            "en": "Nordform Architects",
+            "ru": "Nordform Architects"
+        },
+        "category": {
+            "en": "Architecture / Portfolio",
+            "ru": "Архитектура / Портфолио"
+        },
+        "year": "2026",
+        "description": {
+            "en": "Responsive architecture portfolio website built with HTML, CSS and JavaScript.",
+            "ru": "Адаптивный сайт архитектурного бюро, созданный с использованием HTML, CSS и JavaScript."
+        },
+        "stack": ["HTML", "CSS", "JS"],
+        "image": "projects-images/nordform.webp",
+        "url": "https://kitcattic.github.io/nordform-architects/"
+    },
+
+    {
+        "name": "cat-game",
+        "title": {
+            "en": "Cat Game",
+            "ru": "Cat Game"
+        },
+        "category": {
+            "en": "Flash-game",
+            "ru": "Флеш-игра"
+        },
+        "year": "1923",
+        "description": {
+            "en": "Just stub",
+            "ru": "Просто заглушка"
+        },
+        "stack": ["HTML", "CSS", "JS"],
+        "image": "projects-images/cat-game.webp",
+        "url": "https://kitcattic.github.io/nordform-architects/"
+    }
+]

@@ -12,7 +12,7 @@
         <script src="js/translation.js" defer></script>
     </head>
     <body>
-        <header>
+        <header class="header">
             <h2 class="logo" data-i18n="logo">Andrew</h2>
 
             <nav class="nav">
@@ -51,7 +51,7 @@
                                 class="button"
                                 data-i18n="heroProjects"
                             >
-                                View my work
+                                View my work ➜
                             </a>
 
                             <a
@@ -71,33 +71,35 @@
                         alt="Working on a laptop"
                     />
                 </div>
+
+                <div class="hero__statement" data-i18n="heroStatement">
+                    LET'S CREATE SOMETHING GREAT
+                </div>
             </section>
 
             <section class="projects" id="projects">
-                <div class="container">
-                    <div class="projects__header">
-                        <h2 class="projects__title" data-i18n="projectsTitle">
-                            SELECTED WORK
-                        </h2>
+                <div class="projects__header">
+                    <h2 class="projects__title" data-i18n="projectsTitle">
+                        FEATURED PROJECTS
+                    </h2>
 
-                        <p
-                            class="projects__description"
-                            data-i18n="projectsDescription"
-                        >
-                            A selection of projects I've designed and developed
-                            from concept to final implementation.
-                        </p>
-                    </div>
+                    <p
+                        class="projects__description"
+                        data-i18n="projectsDescription"
+                    >
+                        A selection of projects I've designed and developed from
+                        concept to final implementation.
+                    </p>
+                </div>
 
-                    <div class="projects__grid">
-                        <!-- Projects will be rendered here -->
-                    </div>
+                <div class="projects__grid">
+                    <!-- Projects will be rendered here -->
+                </div>
 
-                    <div class="projects__footer">
-                        <span data-i18n="projectsComing">
-                            More projects coming soon
-                        </span>
-                    </div>
+                <div class="projects__footer">
+                    <span data-i18n="projectsComing">
+                        More projects coming soon
+                    </span>
                 </div>
             </section>
         </main>

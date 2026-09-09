@@ -1,3 +1,7 @@
+document.addEventListener("DOMContentLoaded", () => {
+    setLanguage(savedLanguage);
+});
+
 const translations = {
     en: {
         logo: "Andrew",
@@ -9,10 +13,11 @@ const translations = {
         heroTitle: "I BUILD MODERN WEBSITES THAT WORK",
         heroDescription:
             "I'm a frontend developer focused on creating clean, responsive and user-friendly websites for businesses and personal brands.",
-        heroProjects: "View my work",
+        heroProjects: "View my work ➜",
         heroContact: "Contact me",
+        heroStatement: "LET'S CREATE SOMETHING GREAT",
 
-        projectsTitle: "SELECTED WORK",
+        projectsTitle: "FEATURED PROJECTS",
         projectsDescription:
             "A selection of projects I've designed and developed from concept to final implementation.",
         projectsComing: "More projects coming soon",
@@ -25,13 +30,14 @@ const translations = {
         aboutNav: "Обо мне",
         contactNav: "Контакты",
 
-        heroTitle: "Я СОЗДАЮ СОВРЕМЕННЫЕ САЙТЫ, КОТОРЫЕ РАБОТАЮТ",
+        heroTitle: "СОЗДАЮ СОВРЕМЕННЫЕ САЙТЫ, КОТОРЫЕ РАБОТАЮТ",
         heroDescription:
             "Я frontend-разработчик, специализирующийся на создании чистых, адаптивных и удобных для пользователей сайтов для бизнеса и личных брендов.",
-        heroProjects: "Мои работы",
+        heroProjects: "Мои работы ➜",
         heroContact: "Связаться",
+        heroStatement: "LET'S CREATE SOMETHING GREAT",
 
-        projectsTitle: "ИЗБРАННЫЕ РАБОТЫ",
+        projectsTitle: "ЛУЧШИЕ ПРОЕКТЫ",
         projectsDescription:
             "Подборка проектов, которые я спроектировал и разработал от идеи до финальной реализации.",
         projectsComing: "Скоро здесь появятся новые проекты",
@@ -54,6 +60,8 @@ function setLanguage(language) {
 
     document.documentElement.lang = language;
     localStorage.setItem("language", language);
+
+    renderProjects();
 }
 
 languageButtons.forEach((button) => {
@@ -63,5 +71,3 @@ languageButtons.forEach((button) => {
 });
 
 const savedLanguage = localStorage.getItem("language") || "en";
-
-setLanguage(savedLanguage);
