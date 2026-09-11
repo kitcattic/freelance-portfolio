@@ -120,7 +120,11 @@
                 </div>
 
                 <div class="about__steps">
-                    <button class="about__step" type="button">
+                    <button
+                        class="about__step"
+                        type="button"
+                        data-step="planning"
+                    >
                         <span class="about__step-number">01</span>
 
                         <div class="about__step-content">
@@ -141,7 +145,11 @@
                         </div>
                     </button>
 
-                    <button class="about__step" type="button">
+                    <button
+                        class="about__step"
+                        type="button"
+                        data-step="design"
+                    >
                         <span class="about__step-number">02</span>
 
                         <div class="about__step-content">
@@ -161,7 +169,11 @@
                         </div>
                     </button>
 
-                    <button class="about__step" type="button">
+                    <button
+                        class="about__step"
+                        type="button"
+                        data-step="results"
+                    >
                         <span class="about__step-number">03</span>
 
                         <div class="about__step-content">
@@ -181,6 +193,73 @@
                             </p>
                         </div>
                     </button>
+                </div>
+
+                <div class="about__details">
+                    <button class="about__details-close" type="button">
+                        ← BACK
+                    </button>
+
+                    <div class="about__details-header">
+                        <span class="about__details-number"></span>
+
+                        <div class="about__details-heading">
+                            <h2 class="about__details-title"></h2>
+
+                            <p class="about__details-description"></p>
+
+                            <ul class="about__details-list">
+                                <li>
+                                    <span class="about__details-list-number"
+                                        >01</span
+                                    >
+                                    <span
+                                        class="about__details-list-text"
+                                    ></span>
+                                </li>
+
+                                <li>
+                                    <span class="about__details-list-number"
+                                        >02</span
+                                    >
+                                    <span
+                                        class="about__details-list-text"
+                                    ></span>
+                                </li>
+
+                                <li>
+                                    <span class="about__details-list-number"
+                                        >03</span
+                                    >
+                                    <span
+                                        class="about__details-list-text"
+                                    ></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="about__details-bottom">
+                        <!--<a
+                            id="about__details-previous"
+                            class="about__details-button"
+                        >
+                            ←
+                        </a>-->
+
+                        <div class="about__details-progress">
+                            <span class="progress-item">01</span>
+                            <span class="progress-item">02</span>
+                            <span class="progress-item">03</span>
+                        </div>
+
+                        <!--<a
+                            id="about__details-next"
+                            class="about__details-button"
+                        >
+                            →
+                        </a>-->
+                    </div>
                 </div>
             </section>
         </main>

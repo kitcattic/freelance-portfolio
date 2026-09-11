@@ -14,9 +14,21 @@
             "en": "Responsive architecture portfolio website built with HTML, CSS and JavaScript.",
             "ru": "Адаптивный сайт архитектурного бюро, созданный с использованием HTML, CSS и JavaScript."
         },
+        "fullDescription": {
+            "en": "Nordform Architects is a minimalist portfolio website designed for an architecture studio. The main goal was to create a visual-first experience where architectural projects remain the central focus. I developed a clean structure with strong typography, balanced spacing and a restrained visual language. The website is fully responsive and adapts the layout and navigation to different screen sizes. Particular attention was paid to hierarchy, project presentation and smooth interaction between sections, keeping the interface simple without making it feel empty.",
+            "ru": "Nordform Architects — минималистичный сайт-портфолио архитектурной студии. Главной задачей было создать визуальный интерфейс, в котором проекты остаются главным элементом страницы. Я разработал чистую структуру с выразительной типографикой, сбалансированными отступами и сдержанной визуальной системой. Сайт полностью адаптивный и корректно перестраивается под разные размеры экрана. Особое внимание уделено визуальной иерархии, представлению проектов и плавному взаимодействию между секциями — интерфейс остаётся простым, но не выглядит пустым."
+        },
+
         "stack": ["HTML", "CSS", "JS"],
         "image": "projects-images/nordform.webp",
-        "url": "https://kitcattic.github.io/nordform-architects/"
+        "gallery": [
+            "projects-images/nordform-01.webp",
+            "projects-images/nordform-02.webp",
+            "projects-images/nordform-03.webp"
+        ],
+        "url": "https://kitcattic.github.io/nordform-architects/",
+        "github": "https://github.com/kitcattic/nordform-architects",
+        "figma": "..."
     },
 
     {
@@ -36,6 +48,13 @@
         },
         "stack": ["HTML", "CSS", "JS"],
         "image": "projects-images/cat-game.webp",
-        "url": "https://kitcattic.github.io/nordform-architects/"
+        "gallery": [
+            "projects-images/nordform-01.webp",
+            "projects-images/nordform-02.webp",
+            "projects-images/nordform-03.webp"
+        ],
+        "url": "https://kitcattic.github.io/nordform-architects/",
+        "github": "https://github.com/kitcattic/nordform-architects",
+        "figma": "..."
     }
 ]
