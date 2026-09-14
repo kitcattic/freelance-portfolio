@@ -30,6 +30,7 @@
         </header>
 
         <main>
+            <!-- HERO -->
             <section class="hero" id="home">
                 <div class="hero__content">
                     <h1 class="hero__title" data-i18n="heroTitle">
@@ -78,6 +79,7 @@
                 </div>
             </section>
 
+            <!-- PROJECTS -->
             <section class="projects" id="projects">
                 <div class="projects__header">
                     <h2 class="projects__title" data-i18n="projectsTitle">
@@ -104,6 +106,7 @@
                 </div>
             </section>
 
+            <!-- ABOUT -->
             <section class="about" id="about">
                 <div class="about__top">
                     <h2 class="about__title" data-i18n="aboutTitle">
@@ -124,6 +127,7 @@
                         class="about__step"
                         type="button"
                         data-step="planning"
+                        data-index="1"
                     >
                         <span class="about__step-number">01</span>
 
@@ -149,6 +153,7 @@
                         class="about__step"
                         type="button"
                         data-step="design"
+                        data-index="2"
                     >
                         <span class="about__step-number">02</span>
 
@@ -169,96 +174,381 @@
                         </div>
                     </button>
 
-                    <button
-                        class="about__step"
-                        type="button"
-                        data-step="results"
-                    >
+                    <button class="about__step" data-index="3">
                         <span class="about__step-number">03</span>
 
                         <div class="about__step-content">
                             <h3
                                 class="about__step-title"
-                                data-i18n="resultsTitle"
+                                data-i18n="codingTitle"
                             >
-                                REAL RESULTS
+                                CODING
                             </h3>
 
                             <p
                                 class="about__step-description"
-                                data-i18n="resultsDescription"
+                                data-i18n="codingDescription"
                             >
-                                Turning ideas into working websites and
-                                products.
+                                Turning designs into clean and functional code.
+                            </p>
+                        </div>
+                    </button>
+
+                    <button class="about__step" data-index="4">
+                        <span class="about__step-number">04</span>
+
+                        <div class="about__step-content">
+                            <h3
+                                class="about__step-title"
+                                data-i18n="launchTitle"
+                            >
+                                LAUNCH
+                            </h3>
+
+                            <p
+                                class="about__step-description"
+                                data-i18n="launchDescription"
+                            >
+                                Testing, launching and supporting the final
+                                product.
                             </p>
                         </div>
                     </button>
                 </div>
 
-                <div class="about__details">
-                    <button class="about__details-close" type="button">
-                        ← BACK
-                    </button>
+                <div class="about__details-wrapper">
+                    <!-- PLANNING -->
+                    <div
+                        class="about__details about__details--planning"
+                        data-index="1"
+                    >
+                        <button class="about__details-close" type="button">
+                            ← BACK
+                        </button>
 
-                    <div class="about__details-header">
-                        <span class="about__details-number"></span>
+                        <div class="about__details-header">
+                            <span class="about__details-number">01</span>
 
-                        <div class="about__details-heading">
-                            <h2 class="about__details-title"></h2>
+                            <div class="about__details-heading">
+                                <h2
+                                    class="about__details-title"
+                                    data-i18n="planningTitle"
+                                >
+                                    PLANNING
+                                </h2>
 
-                            <p class="about__details-description"></p>
+                                <p
+                                    class="about__details-description"
+                                    data-i18n="planningStepFullDescription"
+                                >
+                                    I start by understanding your goals,
+                                    audience and requirements. We define the
+                                    project scope, choose the right approach and
+                                    create a clear plan to achieve the desired
+                                    results.
+                                </p>
 
-                            <ul class="about__details-list">
-                                <li>
-                                    <span class="about__details-list-number"
-                                        >01</span
-                                    >
-                                    <span
-                                        class="about__details-list-text"
-                                    ></span>
-                                </li>
+                                <ul class="about__details-list">
+                                    <li>
+                                        <span class="about__details-list-number"
+                                            >01</span
+                                        >
+                                        <span
+                                            class="about__details-list-text"
+                                            data-i18n="planningStepItem1"
+                                        >
+                                            UNDERSTAND YOUR IDEA
+                                        </span>
+                                    </li>
 
-                                <li>
-                                    <span class="about__details-list-number"
-                                        >02</span
-                                    >
-                                    <span
-                                        class="about__details-list-text"
-                                    ></span>
-                                </li>
+                                    <li>
+                                        <span class="about__details-list-number"
+                                            >02</span
+                                        >
+                                        <span
+                                            class="about__details-list-text"
+                                            data-i18n="planningStepItem2"
+                                        >
+                                            ANALYZE REQUIREMENTS
+                                        </span>
+                                    </li>
 
-                                <li>
-                                    <span class="about__details-list-number"
-                                        >03</span
-                                    >
-                                    <span
-                                        class="about__details-list-text"
-                                    ></span>
-                                </li>
-                            </ul>
+                                    <li>
+                                        <span class="about__details-list-number"
+                                            >03</span
+                                        >
+                                        <span
+                                            class="about__details-list-text"
+                                            data-i18n="planningStepItem3"
+                                        >
+                                            PLAN THE SOLUTION
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="about__details-bottom">
+                            <div class="about__details-progress">
+                                <span class="progress-item">01</span>
+                                <span class="progress-item">02</span>
+                                <span class="progress-item">03</span>
+                                <span class="progress-item">04</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="about__details-bottom">
-                        <!--<a
-                            id="about__details-previous"
-                            class="about__details-button"
-                        >
-                            ←
-                        </a>-->
+                    <!-- DESIGN -->
+                    <div
+                        class="about__details about__details--design"
+                        data-index="2"
+                    >
+                        <button class="about__details-close" type="button">
+                            ← BACK
+                        </button>
 
-                        <div class="about__details-progress">
-                            <span class="progress-item">01</span>
-                            <span class="progress-item">02</span>
-                            <span class="progress-item">03</span>
+                        <div class="about__details-header">
+                            <span class="about__details-number">02</span>
+
+                            <div class="about__details-heading">
+                                <h2
+                                    class="about__details-title"
+                                    data-i18n="designTitle"
+                                >
+                                    DESIGN
+                                </h2>
+
+                                <p
+                                    class="about__details-description"
+                                    data-i18n="designStepFullDescription"
+                                >
+                                    I create clean, modern and user-friendly
+                                    interfaces that look great and work smoothly
+                                    across all devices.
+                                </p>
+
+                                <ul class="about__details-list">
+                                    <li>
+                                        <span class="about__details-list-number"
+                                            >01</span
+                                        >
+                                        <span
+                                            class="about__details-list-text"
+                                            data-i18n="designStepItem1"
+                                        >
+                                            UI/UX DESIGN
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span class="about__details-list-number"
+                                            >02</span
+                                        >
+                                        <span
+                                            class="about__details-list-text"
+                                            data-i18n="designStepItem2"
+                                        >
+                                            RESPONSIVE LAYOUTS
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span class="about__details-list-number"
+                                            >03</span
+                                        >
+                                        <span
+                                            class="about__details-list-text"
+                                            data-i18n="designStepItem3"
+                                        >
+                                            ATTENTION TO DETAILS
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
 
-                        <!--<a
-                            id="about__details-next"
-                            class="about__details-button"
-                        >
-                            →
-                        </a>-->
+                        <div class="about__details-bottom">
+                            <div class="about__details-progress">
+                                <span class="progress-item">01</span>
+                                <span class="progress-item">02</span>
+                                <span class="progress-item">03</span>
+                                <span class="progress-item">04</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CODING -->
+                    <div
+                        class="about__details about__details--coding"
+                        data-index="3"
+                    >
+                        <button class="about__details-close" type="button">
+                            ← BACK
+                        </button>
+
+                        <div class="about__details-header">
+                            <span class="about__details-number">03</span>
+
+                            <div class="about__details-heading">
+                                <h2
+                                    class="about__details-title"
+                                    data-i18n="codingTitle"
+                                >
+                                    CODING
+                                </h2>
+
+                                <p
+                                    class="about__details-description"
+                                    data-i18n="codingStepFullDescription"
+                                >
+                                    I turn the approved design into a fully
+                                    functional website.
+                                </p>
+
+                                <ul class="about__details-list">
+                                    <li>
+                                        <span
+                                            class="about__details-list-number"
+                                        >
+                                            01
+                                        </span>
+
+                                        <span
+                                            class="about__details-list-text"
+                                            data-i18n="codingStepItem1"
+                                        >
+                                            FRONTEND DEVELOPMENT
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span
+                                            class="about__details-list-number"
+                                        >
+                                            02
+                                        </span>
+
+                                        <span
+                                            class="about__details-list-text"
+                                            data-i18n="codingStepItem2"
+                                        >
+                                            RESPONSIVE IMPLEMENTATION
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span
+                                            class="about__details-list-number"
+                                        >
+                                            03
+                                        </span>
+
+                                        <span
+                                            class="about__details-list-text"
+                                            data-i18n="codingStepItem3"
+                                        >
+                                            CLEAN & MAINTAINABLE CODE
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="about__details-bottom">
+                            <div class="about__details-progress">
+                                <span class="progress-item">01</span>
+                                <span class="progress-item">02</span>
+                                <span class="progress-item">03</span>
+                                <span class="progress-item">04</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LAUNCH -->
+                    <div
+                        class="about__details about__details--launch"
+                        data-index="4"
+                    >
+                        <button class="about__details-close" type="button">
+                            ← BACK
+                        </button>
+
+                        <div class="about__details-header">
+                            <span class="about__details-number">04</span>
+
+                            <div class="about__details-heading">
+                                <h2
+                                    class="about__details-title"
+                                    data-i18n="launchTitle"
+                                >
+                                    LAUNCH
+                                </h2>
+
+                                <p
+                                    class="about__details-description"
+                                    data-i18n="launchStepFullDescription"
+                                >
+                                    Before launch, I test the website, fix
+                                    issues and optimize its performance.
+                                </p>
+
+                                <ul class="about__details-list">
+                                    <li>
+                                        <span
+                                            class="about__details-list-number"
+                                        >
+                                            01
+                                        </span>
+
+                                        <span
+                                            class="about__details-list-text"
+                                            data-i18n="launchStepItem1"
+                                        >
+                                            TESTING & DEBUGGING
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span
+                                            class="about__details-list-number"
+                                        >
+                                            02
+                                        </span>
+
+                                        <span
+                                            class="about__details-list-text"
+                                            data-i18n="launchStepItem2"
+                                        >
+                                            PERFORMANCE OPTIMIZATION
+                                        </span>
+                                    </li>
+
+                                    <li>
+                                        <span
+                                            class="about__details-list-number"
+                                        >
+                                            03
+                                        </span>
+
+                                        <span
+                                            class="about__details-list-text"
+                                            data-i18n="launchStepItem3"
+                                        >
+                                            LAUNCH & SUPPORT
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="about__details-bottom">
+                            <div class="about__details-progress">
+                                <span class="progress-item">01</span>
+                                <span class="progress-item">02</span>
+                                <span class="progress-item">03</span>
+                                <span class="progress-item">04</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

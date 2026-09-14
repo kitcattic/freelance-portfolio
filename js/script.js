@@ -44,7 +44,9 @@ function createProjectCard(project) {
     const currentLanguage = localStorage.getItem("language") || "en";
 
     const card = document.createElement("article");
-    card.addEventListener("click", () => {
+    card.addEventListener("click", (event) => {
+        if (event.target.closest("a")) return;
+
         openCard(card);
     });
 
@@ -170,196 +172,178 @@ function openCard(card) {
 
 const about = document.querySelector(".about");
 const aboutSteps = document.querySelectorAll(".about__step");
-const aboutDetails = document.querySelector(".about__details");
-const aboutDetailsHeader = aboutDetails.querySelector(".about__details-header");
-const aboutDetailsClose = document.querySelector(".about__details-close");
+const aboutDetails = document.querySelectorAll(".about__details");
+const aboutDetailsClose = document.querySelectorAll(".about__details-close");
 
-const aboutDetailsNumber = aboutDetails.querySelector(".about__details-number");
+let currentStep = 1;
+let stepInterval = null;
+let isAnimating = false;
 
-const aboutDetailsTitle = aboutDetails.querySelector(".about__details-title");
+/* ================================ Progress ================================ */
 
-const aboutDetailsDescription = aboutDetails.querySelector(
-    ".about__details-description",
-);
-
-const aboutDetailsItems = aboutDetails.querySelectorAll(
-    ".about__details-list-text",
-);
-
-const progressItems = aboutDetails.querySelectorAll(".progress-item");
-
-let currentStep = 0;
-let stepInterval;
-
-/* ================ Show Step ================ */
-
-function showStep(index) {
-    const step = aboutSteps[index];
-
-    if (!step) return;
-
-    const stepName = step.dataset.step;
-    const currentLanguage = localStorage.getItem("language") || "en";
-
-    /* Number */
-
-    aboutDetailsNumber.textContent = step.querySelector(
-        ".about__step-number",
-    ).textContent;
-
-    /* Title */
-
-    aboutDetailsTitle.textContent =
-        translations[currentLanguage][`${stepName}Title`];
-
-    /* Full description */
-
-    aboutDetailsDescription.textContent =
-        translations[currentLanguage][`${stepName}StepFullDescription`];
-
-    /* List */
-
-    aboutDetailsItems.forEach((item, itemIndex) => {
-        item.textContent =
-            translations[currentLanguage][
-                `${stepName}StepItem${itemIndex + 1}`
-            ];
+function updateProgress(index) {
+    // Сначала сбрасываем ВСЕ progress
+    document.querySelectorAll(".progress-item").forEach((item) => {
+        item.classList.remove("active");
     });
 
-    /* Background */
+    // Берём progress только у текущего details
+    const currentDetails = document.querySelector(
+        `.about__details[data-index="${index}"]`,
+    );
 
-    aboutDetails.style.backgroundImage = `
-        linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 1) 0%,
-            rgba(0, 0, 0, 1) 30%,
-            rgba(0, 0, 0, 0.5) 70%,
-            rgba(0, 0, 0, 0.1) 100%
-        ),
-        url("assets/images/${stepName}.webp")
-    `;
+    if (!currentDetails) return;
 
-    /* Progress */
+    const progressItems = currentDetails.querySelectorAll(".progress-item");
 
     progressItems.forEach((item, itemIndex) => {
-        item.classList.toggle("active", itemIndex === index);
+        item.classList.toggle("active", itemIndex + 1 === index);
     });
-
-    currentStep = index;
 }
 
-/* ================ Change Step Animation ================ */
+/* ================================ Open ================================ */
 
-function changeStep(index) {
-    if (index === currentStep) return;
-
-    const direction = index > currentStep ? -1 : 1;
-
-    // Уезжает ВСЁ: картинка, текст, BACK
-    aboutDetails.style.transition = "transform 0.6s ease";
-    aboutDetails.style.transform = `translateX(${direction * 100}%)`;
-
-    setTimeout(() => {
-        // Меняем содержимое и картинку
-        showStep(index);
-
-        // Ставим весь details с другой стороны
-        aboutDetails.style.transition = "none";
-        aboutDetails.style.transform = `translateX(${direction * -100}%)`;
-
-        requestAnimationFrame(() => {
-            aboutDetails.style.transition = "transform 0.6s ease";
-
-            aboutDetails.style.transform = "translateX(0)";
-        });
-    }, 600);
-
-    currentStep = index;
-}
-
-function updateStepContent(container, index) {
-    const step = aboutSteps[index];
-
-    if (!step) return;
-
-    const stepName = step.dataset.step;
-    const currentLanguage = localStorage.getItem("language") || "en";
-
-    container.querySelector(".about__details-number").textContent =
-        step.querySelector(".about__step-number").textContent;
-
-    container.querySelector(".about__details-title").textContent =
-        translations[currentLanguage][`${stepName}Title`];
-
-    container.querySelector(".about__details-description").textContent =
-        translations[currentLanguage][`${stepName}StepFullDescription`];
-
-    container
-        .querySelectorAll(".about__details-list-text")
-        .forEach((item, itemIndex) => {
-            item.textContent =
-                translations[currentLanguage][
-                    `${stepName}StepItem${itemIndex + 1}`
-                ];
-        });
-}
-
-/* ================ Open Step ================ */
-
-function openStep(index) {
-    showStep(index);
-
-    aboutDetails.classList.add("is-open");
-    about.classList.add("details-open");
-
-    document.body.style.overflow = "hidden";
-
-    startStepSlider();
-}
-
-/* ================ Step Cards ================ */
-
-aboutSteps.forEach((step, index) => {
+aboutSteps.forEach((step) => {
     step.addEventListener("click", () => {
-        openStep(index);
-    });
-});
+        const index = Number(step.dataset.index);
 
-/* ================ Progress Click ================ */
+        currentStep = index;
 
-progressItems.forEach((item, index) => {
-    item.addEventListener("click", () => {
-        changeStep(index);
+        aboutSteps.forEach((item) => {
+            item.classList.add("is-hiding");
+        });
+
+        aboutDetails.forEach((details) => {
+            details.classList.toggle(
+                "is-open",
+                Number(details.dataset.index) === index,
+            );
+        });
+
+        about.classList.add("details-open");
+
+        updateProgress(index);
         startStepSlider();
     });
 });
 
-/* ================ Auto Slider ================ */
+/* ================================ Change Step ================================ */
+
+function changeStep(nextStep) {
+    if (isAnimating) return;
+    if (nextStep === currentStep) return;
+    if (nextStep < 1 || nextStep > 4) return;
+
+    const currentDetails = document.querySelector(
+        `.about__details[data-index="${currentStep}"]`,
+    );
+
+    const nextDetails = document.querySelector(
+        `.about__details[data-index="${nextStep}"]`,
+    );
+
+    if (!currentDetails || !nextDetails) return;
+
+    isAnimating = true;
+
+    const direction = nextStep > currentStep ? "left" : "right";
+
+    /* Новый слайд */
+
+    nextDetails.classList.add("is-open");
+    nextDetails.classList.add(`slide-in-${direction}`);
+
+    /* Старый слайд */
+
+    currentDetails.classList.add(`slide-out-${direction}`);
+
+    /* Progress */
+
+    updateProgress(nextStep);
+
+    setTimeout(() => {
+        currentDetails.classList.remove(
+            "is-open",
+            "slide-out-left",
+            "slide-out-right",
+        );
+
+        nextDetails.classList.remove("slide-in-left", "slide-in-right");
+
+        currentStep = nextStep;
+        isAnimating = false;
+    }, 600);
+}
+
+/* ================================ Progress Click ================================ */
+
+aboutDetails.forEach((details) => {
+    const progressItems = details.querySelectorAll(".progress-item");
+
+    progressItems.forEach((item, index) => {
+        item.addEventListener("click", (event) => {
+            event.stopPropagation();
+
+            // Клик работает только у открытого details
+            if (!details.classList.contains("is-open")) return;
+
+            const nextStep = index + 1;
+
+            changeStep(nextStep);
+
+            startStepSlider();
+        });
+    });
+});
+
+/* ================================ Auto Slider ================================ */
 
 function startStepSlider() {
     clearInterval(stepInterval);
 
     stepInterval = setInterval(() => {
-        const nextStep = (currentStep + 1) % aboutSteps.length;
+        let nextStep = currentStep + 1;
+
+        if (nextStep > 4) {
+            nextStep = 1;
+        }
 
         changeStep(nextStep);
     }, 7000);
 }
 
-/* ================ Close ================ */
+/* ================================ Close ================================ */
 
-aboutDetailsClose.addEventListener("click", () => {
-    aboutDetails.classList.remove(
-        "is-open",
-        "slide-out-left",
-        "slide-out-right",
-        "slide-in-left",
-        "slide-in-right",
-    );
+aboutDetailsClose.forEach((button) => {
+    button.addEventListener("click", closeDetails);
+});
+
+navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+        if (about.classList.contains("details-open")) {
+            closeDetails();
+        }
+    });
+});
+
+function closeDetails() {
+    clearInterval(stepInterval);
+
+    aboutDetails.forEach((details) => {
+        details.classList.remove(
+            "is-open",
+            "slide-in-left",
+            "slide-in-right",
+            "slide-out-left",
+            "slide-out-right",
+        );
+    });
 
     about.classList.remove("details-open");
 
-    document.body.style.overflow = "";
-
-    clearInterval(stepInterval);
-});
+    setTimeout(() => {
+        aboutSteps.forEach((step) => {
+            step.classList.remove("is-hiding");
+        });
+    }, 300);
+}

@@ -50,14 +50,26 @@ const translations = {
         designStepItem2: "RESPONSIVE LAYOUTS",
         designStepItem3: "ATTENTION TO DETAILS",
 
-        resultsTitle: "FROM IDEA TO REALITY",
-        resultsDescription: "Turning ideas into working websites and products.",
-        resultsStepFullDescription:
-            "I turn ideas into fully working websites and digital products. I focus on clean, functional code and long-term support, so you can get a product that actually works and brings value.",
+        codingTitle: "CODING",
+        codingDescription: "Turning designs into clean and functional code.",
 
-        resultsStepItem1: "DEVELOPMENT",
-        resultsStepItem2: "TESTING & OPTIMIZATION",
-        resultsStepItem3: "LAUNCH & SUPPORT",
+        codingStepFullDescription:
+            "I turn the approved design into a fully functional website. I write clean, maintainable code and make sure everything works smoothly across different devices and screen sizes.",
+
+        codingStepItem1: "FRONTEND DEVELOPMENT",
+        codingStepItem2: "RESPONSIVE IMPLEMENTATION",
+        codingStepItem3: "CLEAN & MAINTAINABLE CODE",
+
+        launchTitle: "LAUNCH",
+        launchDescription:
+            "Testing, launching and supporting the final product.",
+
+        launchStepFullDescription:
+            "Before launch, I test the website, fix issues and optimize its performance. After everything is ready, I deploy the project and can provide further support and improvements.",
+
+        launchStepItem1: "TESTING & DEBUGGING",
+        launchStepItem2: "PERFORMANCE OPTIMIZATION",
+        launchStepItem3: "LAUNCH & SUPPORT",
     },
 
     ru: {
@@ -107,15 +119,26 @@ const translations = {
         designStepItem2: "АДАПТИВНЫЕ МАКЕТЫ",
         designStepItem3: "ВНИМАНИЕ К ДЕТАЛЯМ",
 
-        resultsTitle: "ОТ ИДЕИ К РЕАЛИЗАЦИИ",
-        resultsDescription:
-            "Превращение идей в готовые сайты и цифровые продукты.",
-        resultsStepFullDescription:
-            "Я превращаю идеи и готовый дизайн в полноценные сайты и цифровые продукты. Я уделяю внимание чистому коду, стабильной работе и дальнейшей поддержке, чтобы продукт действительно приносил пользу.",
+        codingTitle: "РАЗРАБОТКА",
+        codingDescription: "Превращение дизайна в чистый и функциональный код.",
 
-        resultsStepItem1: "РАЗРАБОТКА",
-        resultsStepItem2: "ТЕСТИРОВАНИЕ И ОПТИМИЗАЦИЯ",
-        resultsStepItem3: "ЗАПУСК И ПОДДЕРЖКА",
+        codingStepFullDescription:
+            "Я превращаю готовый дизайн в полноценный работающий сайт. Пишу чистый и поддерживаемый код, обеспечивая корректную работу проекта на разных устройствах и размерах экрана.",
+
+        codingStepItem1: "FRONTEND-РАЗРАБОТКА",
+        codingStepItem2: "АДАПТИВНАЯ ВЁРСТКА",
+        codingStepItem3: "ЧИСТЫЙ И ПОДДЕРЖИВАЕМЫЙ КОД",
+
+        launchTitle: "ЗАПУСК",
+        launchDescription:
+            "Тестирование, запуск и дальнейшая поддержка проекта.",
+
+        launchStepFullDescription:
+            "Перед запуском я тестирую сайт, исправляю ошибки и оптимизирую его производительность. После этого размещаю проект и при необходимости продолжаю заниматься его поддержкой и улучшением.",
+
+        launchStepItem1: "ТЕСТИРОВАНИЕ И ОТЛАДКА",
+        launchStepItem2: "ОПТИМИЗАЦИЯ ПРОИЗВОДИТЕЛЬНОСТИ",
+        launchStepItem3: "ЗАПУСК И ПОДДЕРЖКА",
     },
 };
 

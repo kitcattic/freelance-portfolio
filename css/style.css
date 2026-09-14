@@ -408,6 +408,8 @@ section {
     text-align: center;
 }
 
+/* Projects Card */
+
 .project-card {
     border: 1px solid var(--color-border);
 
@@ -518,9 +520,37 @@ section {
 /* About */
 
 .about {
+    position: relative;
+
     display: flex;
     flex-direction: column;
     gap: var(--space-7);
+}
+
+.about::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 30%;
+
+    background-image: radial-gradient(
+        circle,
+        var(--color-text-secondary) 2px,
+        transparent 2px
+    );
+
+    background-size: 20px 20px;
+
+    mask-image: linear-gradient(to top, black 0%, transparent 100%);
+
+    -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
+
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .about__top {
@@ -555,7 +585,7 @@ section {
 
 .about__steps {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-3);
 
     transition:
@@ -596,11 +626,15 @@ section {
 }
 
 .about__step:nth-child(2) {
-    animation-delay: 0.6s;
+    animation-delay: 0.4s;
 }
 
 .about__step:nth-child(3) {
-    animation-delay: 1s;
+    animation-delay: 0.8s;
+}
+
+.about__step:nth-child(4) {
+    animation-delay: 1.2s;
 }
 
 .about__step-number {
@@ -639,6 +673,13 @@ section {
     opacity: 0;
 }
 
+/* About Details */
+
+.about__details-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
 .about__details {
     position: fixed;
     inset: 0;
@@ -664,7 +705,6 @@ section {
         opacity 0.4s ease,
         visibility 0.7s ease;
 
-    border: 2px solid gold;
     overflow: hidden;
 }
 
@@ -679,20 +719,61 @@ section {
     transition: transform 0.6s ease;
 }
 
-.about__details-header.slide-out-left {
-    transform: translateX(-100%);
+.about__details.slide-out-left {
+    animation: slideOutLeft 0.6s ease forwards;
 }
 
-.about__details-header.slide-out-right {
-    transform: translateX(100%);
+.about__details.slide-in-left {
+    animation: slideInLeft 0.6s ease forwards;
 }
 
-.about__details-header.slide-in-left {
-    transform: translateX(-100%);
+.about__details.slide-out-right {
+    animation: slideOutRight 0.6s ease forwards;
 }
 
-.about__details-header.slide-in-right {
-    transform: translateX(100%);
+.about__details.slide-in-right {
+    animation: slideInRight 0.6s ease forwards;
+}
+
+@keyframes slideOutLeft {
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutRight {
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.about__details-slide {
+    position: absolute;
+    inset: 0;
+
+    padding: var(--space-7);
+
+    transition: transform 0.6s ease;
 }
 
 .about__details-header {
@@ -809,5 +890,53 @@ section {
 
 .progress-item.active::before {
     width: 100%;
-    transition: width 10s linear;
+    transition: width 7s linear;
+}
+
+.about__details[data-index="1"] {
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 1) 30%,
+            rgba(0, 0, 0, 0.5) 70%,
+            rgba(0, 0, 0, 0) 100%
+        ),
+        url("../assets/images/planning.webp");
+}
+
+.about__details[data-index="2"] {
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 1) 30%,
+            rgba(0, 0, 0, 0.5) 70%,
+            rgba(0, 0, 0, 0) 100%
+        ),
+        url("../assets/images/design.webp");
+}
+
+.about__details[data-index="3"] {
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 1) 30%,
+            rgba(0, 0, 0, 0.5) 70%,
+            rgba(0, 0, 0, 0) 100%
+        ),
+        url("../assets/images/coding.webp");
+}
+
+.about__details[data-index="4"] {
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 1) 30%,
+            rgba(0, 0, 0, 0.5) 70%,
+            rgba(0, 0, 0, 0) 100%
+        ),
+        url("../assets/images/launch.webp");
 }

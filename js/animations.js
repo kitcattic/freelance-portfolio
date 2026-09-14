@@ -1,4 +1,4 @@
-/* ================================= About Animations ================================= */
+/* ================================= Hero Animations ================================= */
 
 const heroSectionAnim = document.querySelector(".hero");
 const heroContentAnim = document.querySelector(".hero__content");
