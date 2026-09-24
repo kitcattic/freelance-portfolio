@@ -20,6 +20,7 @@
                 <a href="#home" data-i18n="homeNav">Home</a>
                 <a href="#projects" data-i18n="projectsNav">Projects</a>
                 <a href="#about" data-i18n="aboutNav">About</a>
+                <a href="#skills" data-i18n="skillsNav">Skills</a>
                 <a href="#contact" data-i18n="contactNav">Contact</a>
             </nav>
 
@@ -332,6 +333,7 @@
                                         <span class="about__details-list-number"
                                             >01</span
                                         >
+                                        1
                                         <span
                                             class="about__details-list-text"
                                             data-i18n="designStepItem1"
@@ -549,6 +551,137 @@
                                 <span class="progress-item">04</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SKILLS -->
+            <section class="skills" id="skills">
+                <div class="skills__top">
+                    <h2 class="skills__title" data-i18n="skillsTitle">
+                        SKILLS
+                    </h2>
+                    <p
+                        class="skills__description"
+                        data-i18n="skillsDescription"
+                    >
+                        I build modern websites using up-to-date technologies
+                        and development practices. I combine thoughtful design
+                        with a modern frontend stack to create fast, responsive
+                        and engaging digital experiences.
+                    </p>
+                </div>
+                <div class="skills__inner">
+                    <div class="skills__grid">
+                        <button
+                            class="skill-card"
+                            type="button"
+                            data-skill="html"
+                            data-description="skillsHtmlDescription"
+                        >
+                            <span class="skill-card__icon">
+                                <i data-lucide="code-2"></i>
+                            </span>
+
+                            <span class="skill-card__content">
+                                <span class="skill-card__title">HTML5</span>
+                            </span>
+                        </button>
+
+                        <button
+                            class="skill-card"
+                            type="button"
+                            data-skill="css"
+                            data-description="skillsCssDescription"
+                        >
+                            <span class="skill-card__icon">
+                                <i data-lucide="palette"></i>
+                            </span>
+
+                            <span class="skill-card__content">
+                                <span class="skill-card__title">CSS3</span>
+                            </span>
+                        </button>
+
+                        <button
+                            class="skill-card"
+                            type="button"
+                            data-skill="javascript"
+                            data-description="skillsJsDescription"
+                        >
+                            <span class="skill-card__icon">
+                                <i data-lucide="braces"></i>
+                            </span>
+
+                            <span class="skill-card__content">
+                                <span class="skill-card__title"
+                                    >JavaScript</span
+                                >
+                            </span>
+                        </button>
+
+                        <button
+                            class="skill-card"
+                            type="button"
+                            data-skill="react"
+                            data-description="skillsReactDescription"
+                        >
+                            <span class="skill-card__icon">
+                                <i data-lucide="atom"></i>
+                            </span>
+
+                            <span class="skill-card__content">
+                                <span class="skill-card__title">React</span>
+                            </span>
+                        </button>
+
+                        <button
+                            class="skill-card"
+                            type="button"
+                            data-skill="nextjs"
+                            data-description="skillsNextDescription"
+                        >
+                            <span class="skill-card__icon">
+                                <i data-lucide="layers-2"></i>
+                            </span>
+
+                            <span class="skill-card__content">
+                                <span class="skill-card__title">Next.js</span>
+                            </span>
+                        </button>
+
+                        <button
+                            class="skill-card"
+                            type="button"
+                            data-skill="typescript"
+                            data-description="skillsTypeScriptDescription"
+                        >
+                            <span class="skill-card__icon">
+                                <i data-lucide="file-code-2"></i>
+                            </span>
+
+                            <span class="skill-card__content">
+                                <span class="skill-card__title"
+                                    >TypeScript</span
+                                >
+                            </span>
+                        </button>
+                    </div>
+                    <div class="skills__demo">
+                        <div class="skills__demo-header">
+                            <div class="skills__demo-dots">
+                                <span class="skills__demo-dot"></span>
+                                <span class="skills__demo-dot"></span>
+                                <span class="skills__demo-dot"></span>
+                            </div>
+                            <span class="skills__demo-label">Demo.com</span>
+                        </div>
+
+                        <iframe
+                            class="skills__demo-frame"
+                            src="assets/demo/demo.html"
+                            title="Skills demo"
+                        ></iframe>
                     </div>
                 </div>
             </section>

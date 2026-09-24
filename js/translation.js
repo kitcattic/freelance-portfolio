@@ -9,6 +9,7 @@ const translations = {
         homeNav: "Home",
         projectsNav: "Projects",
         aboutNav: "About",
+        skillsNav: "Skills",
         contactNav: "Contact",
 
         //Hero
@@ -70,6 +71,20 @@ const translations = {
         launchStepItem1: "TESTING & DEBUGGING",
         launchStepItem2: "PERFORMANCE OPTIMIZATION",
         launchStepItem3: "LAUNCH & SUPPORT",
+
+        //Skills
+        skillsTitle: "SKILLS",
+        skillsDescription:
+            "I build modern websites using up-to-date technologies and development practices. I combine thoughtful design with a modern frontend stack to create fast, responsive and engaging digital experiences.",
+        skillsFrontend: "FRONTEND",
+        skillsLearning: "CURRENTLY LEARNING",
+        skillsStatement: "Better websites.\nBrighter ideas.",
+        skillsHtmlDescription: "Semantic structure",
+        skillsCssDescription: "Layout & styling",
+        skillsJsDescription: "Interactive interfaces",
+        skillsReactDescription: "Component-based UI",
+        skillsNextDescription: "Modern web framework",
+        skillsTypeScriptDescription: "Typed JavaScript",
     },
 
     ru: {
@@ -78,6 +93,7 @@ const translations = {
         homeNav: "Главная",
         projectsNav: "Проекты",
         aboutNav: "Обо мне",
+        skillsNav: "Навыки",
         contactNav: "Контакты",
 
         //Hero
@@ -139,6 +155,20 @@ const translations = {
         launchStepItem1: "ТЕСТИРОВАНИЕ И ОТЛАДКА",
         launchStepItem2: "ОПТИМИЗАЦИЯ ПРОИЗВОДИТЕЛЬНОСТИ",
         launchStepItem3: "ЗАПУСК И ПОДДЕРЖКА",
+
+        //Skills
+        skillsTitle: "НАВЫКИ",
+        skillsDescription:
+            "Я создаю современные сайты, используя актуальные технологии и современные подходы к разработке. Сочетаю продуманный дизайн с современным frontend-стеком, чтобы создавать быстрые, адаптивные и интерактивные цифровые решения.",
+        skillsFrontend: "FRONTEND",
+        skillsLearning: "СЕЙЧАС ИЗУЧАЮ",
+        skillsStatement: "Лучшие сайты.\nБольше идей.",
+        skillsHtmlDescription: "Семантическая структура",
+        skillsCssDescription: "Вёрстка и стилизация",
+        skillsJsDescription: "Интерактивные интерфейсы",
+        skillsReactDescription: "Компонентный интерфейс",
+        skillsNextDescription: "Современный веб-фреймворк",
+        skillsTypeScriptDescription: "Типизированный JavaScript",
     },
 };
 
