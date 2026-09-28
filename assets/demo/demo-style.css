@@ -418,78 +418,181 @@ select {
 
 /* ================================ Haircuts ================================ */
 
-.haircuts {
-    padding: 120px 0;
+.haircuts__banner {
+    position: relative;
+
+    width: 100%;
+    height: 420px;
+
+    margin-top: 48px;
+    margin-bottom: 32px;
+
+    overflow: hidden;
+
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-large);
+
+    background: var(--color-surface);
+}
+
+.haircuts__banner-image {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: opacity var(--transition);
+}
+
+.haircuts__banner::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to top,
+        rgba(66, 42, 49, 0.8),
+        rgba(66, 42, 49, 0.05) 70%
+    );
+}
+
+.haircuts__banner-content {
+    position: absolute;
+    z-index: 1;
+
+    left: 48px;
+    bottom: 40px;
+
+    max-width: 620px;
+
+    color: var(--color-white);
+}
+
+.haircuts__banner-title {
+    margin: 0 0 12px;
+
+    font-size: 42px;
+    line-height: 1;
+}
+
+.haircuts__banner-description {
+    max-width: 520px;
+
+    margin: 0 0 20px;
+
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.haircuts__banner-info {
+    display: flex;
+    gap: 24px;
+
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .haircuts__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 24px;
+
+    margin-top: 32px;
 }
 
 .haircut-card {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 560px;
+
     overflow: hidden;
 
-    background-color: var(--color-surface-light);
-
     border: 1px solid var(--color-border);
-    border-radius: var(--radius-medium);
+    border-radius: var(--radius-large);
+
+    background: var(--color-surface-light);
+
+    cursor: pointer;
 
     transition:
         transform var(--transition),
+        border-color var(--transition),
         box-shadow var(--transition);
 }
 
 .haircut-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
 
-    box-shadow: 0 20px 40px rgba(135, 62, 82, 0.12);
+    border-color: var(--color-primary);
+
+    box-shadow: 0 16px 40px rgba(66, 42, 49, 0.08);
 }
 
+.haircut-card.is-active {
+    border-color: var(--color-primary);
+}
+
+/* Image */
+
 .haircut-card__image {
+    width: 100%;
+    height: 300px;
+
+    flex-shrink: 0;
+
     overflow: hidden;
+
+    background: var(--color-surface);
 }
 
 .haircut-card__image img {
-    aspect-ratio: 4 / 3;
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
     object-fit: cover;
-
-    transition: transform var(--transition);
-}
-
-.haircut-card:hover .haircut-card__image img {
-    transform: scale(1.04);
 }
 
 .haircut-card__content {
-    padding: 24px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
 
-    text-align: center;
+    padding: 28px 32px 30px;
 }
 
 .haircut-card__content h3 {
-    margin-bottom: 10px;
+    margin: auto 0 12px;
 
     color: var(--color-text);
 
-    font-size: 22px;
+    font-size: 26px;
+    line-height: 1.2;
 }
 
 .haircut-card__content p {
-    margin-bottom: 20px;
+    margin: 0;
 
     color: var(--color-text-secondary);
+
+    font-size: 17px;
+    line-height: 1.5;
 }
 
 .haircut-card__info {
     display: flex;
-    justify-content: center;
-    gap: 16px;
+    gap: 24px;
+
+    margin-top: 28px;
 
     color: var(--color-primary);
 
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 700;
 }
 
@@ -707,7 +810,7 @@ select {
     display: none;
 }
 
-/* ================================ Ressive ================================ */
+/* ================================ Responsive ================================ */
 
 @media (max-width: 800px) {
     .header {

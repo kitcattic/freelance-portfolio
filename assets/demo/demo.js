@@ -11,6 +11,8 @@ if (skill === "css") {
     enableCSS();
 } else if (skill === "javascript") {
     enableJavaScript();
+} else if (skill === "react") {
+    enableReact();
 }
 
 // Hide Sections
@@ -45,14 +47,24 @@ function enableJavaScript() {
     initCarousel();
 }
 
+// React
+function enableReact() {
+    enableCSS();
+    enableJavaScript();
+
+    const section = document.querySelector("#haircuts");
+
+    if (section) {
+        section.classList.remove("is-hidden");
+    }
+
+    initServices();
+}
+
 /* ================================ JS Function ================================ */
 
 // Working Time
 function enableWorkingStatus() {
-    if (jsStatus === false) {
-        return;
-    }
-
     const status = document.querySelector("#workingStatus");
 
     const OPEN_HOUR = 9;
@@ -215,4 +227,42 @@ function initCarousel() {
 
     setActive(activeIndex);
     renderOrder();
+}
+
+// Servisec
+function initServices() {
+    const bannerImage = document.querySelector(".haircuts__banner-image");
+
+    const bannerTitle = document.querySelector(".haircuts__banner-title");
+
+    const bannerDescription = document.querySelector(
+        ".haircuts__banner-description",
+    );
+
+    const bannerPrice = document.querySelector(".haircuts__banner-price");
+
+    const bannerDuration = document.querySelector(".haircuts__banner-duration");
+
+    const cards = document.querySelectorAll(".haircut-card");
+
+    cards.forEach((card) => {
+        card.addEventListener("click", () => {
+            cards.forEach((item) => {
+                item.classList.remove("is-active");
+            });
+
+            card.classList.add("is-active");
+
+            bannerImage.src = card.dataset.image;
+            bannerImage.alt = card.dataset.alt;
+
+            bannerTitle.textContent = card.dataset.title;
+
+            bannerDescription.textContent = card.dataset.description;
+
+            bannerPrice.textContent = card.dataset.price;
+
+            bannerDuration.textContent = card.dataset.duration;
+        });
+    });
 }
