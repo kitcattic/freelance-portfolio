@@ -347,3 +347,71 @@ function closeDetails() {
         });
     }, 300);
 }
+
+/* ================================ Demo ================================ */
+
+const skillCards = document.querySelectorAll(".skill-card");
+const demoFrame = document.querySelector(".skills__demo-frame");
+const demoWindow = document.querySelector(".skills__demo");
+
+const demoGlow = {
+    html: {
+        color: "211, 90, 54",
+        strength: "0.45",
+    },
+
+    css: {
+        color: "48, 76, 220",
+        strength: "0.5",
+    },
+
+    javascript: {
+        color: "241, 223, 79",
+        strength: "0.6",
+    },
+
+    react: {
+        color: "161, 213, 225",
+        strength: "0.7",
+    },
+
+    "next-js": {
+        color: "245, 245, 245",
+        strength: "0.8",
+    },
+
+    typescript: {
+        color: "69, 119, 192",
+        strength: "0.9",
+    },
+};
+
+skillCards.forEach((card) => {
+    card.addEventListener("click", () => {
+        const skill = card.dataset.skill;
+
+        skillCards.forEach((item) => {
+            item.classList.remove("is-active");
+        });
+
+        card.classList.add("is-active");
+
+        demoFrame.classList.add("is-switching");
+
+        demoWindow.style.setProperty(
+            "--demo-glow-color",
+            demoGlow[skill].color,
+        );
+
+        demoWindow.style.setProperty(
+            "--demo-glow-strength",
+            demoGlow[skill].strength,
+        );
+
+        demoFrame.src = `assets/demo/demo.html?skill=${skill}`;
+    });
+});
+
+demoFrame.addEventListener("load", () => {
+    demoFrame.classList.remove("is-switching");
+});

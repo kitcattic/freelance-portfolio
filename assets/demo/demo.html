@@ -1,34 +1,368 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Demo</title>
 
-        <link rel="stylesheet" href="demo-style.css" />
+        <title>Чик Чик — Женская парикмахерская в Саратове</title>
+
         <script src="demo.js" defer></script>
     </head>
+
     <body>
         <header class="header">
-            <h1 class="logo">DEMO</h1>
+            <a class="logo" href="#">
+                <span class="logo__icon">✂</span>
+                <span class="logo__text">Чик Чик</span>
+            </a>
+
             <nav class="nav">
-                <a href="#">Home</a>
-                <a href="#about">About</a>
+                <a href="#">Главная</a>
+                <a href="#about">О нас</a>
+                <a href="#haircuts">Услуги</a>
+                <a href="#locations">Филиалы</a>
             </nav>
+
+            <div class="header-info">
+                <span class="working-status" id="workingStatus"></span>
+                <a class="header__button" href="#booking"> Записаться </a>
+            </div>
         </header>
 
         <main>
-            <div class="top">
-                <h2 class="title">Built from the ground up</h2>
-                <p class="description">
-                    This website starts with simple HTML, gets styled with CSS
-                    and comes to life with JavaScript.
-                </p>
-            </div>
-            <div class="buttons">
-                <button class="button button--outline">Learn more</button>
-                <button class="button">Get started</button>
-            </div>
+            <!-- Hero -->
+            <section class="hero">
+                <div class="hero__content">
+                    <p class="hero__label">ПАРИКМАХЕРСКАЯ · САРАТОВ</p>
+
+                    <h1 class="hero__title">
+                        Твоя красота
+                        <br />
+                        Твой стиль
+                    </h1>
+
+                    <p class="hero__description">
+                        Стрижки, укладки, окрашивание и уход за волосами.
+                        Создаём образы, в которых хочется смотреть на себя снова
+                        и снова.
+                    </p>
+
+                    <div class="hero__buttons">
+                        <a class="button" href="#booking"> Записаться </a>
+
+                        <a class="button button--outline" href="#haircuts">
+                            Смотреть услуги
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero__carousel">
+                    <div class="hero__carousel-track">
+                        <div class="hero__carousel-slide is-hidden">
+                            <img
+                                src="chick-chick.webp"
+                                alt="Интерьер парикмахерской"
+                            />
+                        </div>
+
+                        <div class="hero__carousel-slide is-active">
+                            <img
+                                src="chick-chick-2.webp"
+                                alt="Интерьер парикмахерской"
+                            />
+                        </div>
+
+                        <div class="hero__carousel-slide is-hidden">
+                            <img
+                                src="chick-chick-3.webp"
+                                alt="Интерьер парикмахерской"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About -->
+            <section id="about" class="about">
+                <div class="about__heading">
+                    <h2>
+                        Место, где
+                        <br />
+                        начинается твой стиль.
+                    </h2>
+                </div>
+
+                <div class="about__content">
+                    <p>
+                        «Чик Чик» — женская парикмахерская для тех, кто любит
+                        заботиться о себе и экспериментировать со своим образом.
+                    </p>
+
+                    <p>
+                        Наши мастера помогают подобрать стрижку, оттенок и
+                        укладку, которые подчеркнут индивидуальность каждой
+                        клиентки.
+                    </p>
+
+                    <div class="about__stats">
+                        <div class="stat">
+                            <strong>5+</strong>
+                            <span>лет работы</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>10</strong>
+                            <span>мастеров</span>
+                        </div>
+
+                        <div class="stat">
+                            <strong>3</strong>
+                            <span>филиала</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Haircuts / Services -->
+            <section id="haircuts" class="haircuts is-hidden">
+                <div class="section-heading">
+                    <div>
+                        <h2>Для твоих волос</h2>
+                    </div>
+
+                    <p>
+                        От лёгкой стрижки до полного
+                        <br />
+                        преображения образа.
+                    </p>
+                </div>
+
+                <div class="haircuts__list">
+                    <article class="haircut-card">
+                        <div class="haircut-card__image">
+                            <img
+                                src="../images/demo-image.png"
+                                alt="Женская стрижка"
+                            />
+                        </div>
+
+                        <div class="haircut-card__content">
+                            <h3>Стрижка</h3>
+
+                            <p>
+                                Подберём форму и длину, которые подчеркнут твой
+                                стиль.
+                            </p>
+
+                            <div class="haircut-card__info">
+                                <span>от 1 500 ₽</span>
+                                <span>60 мин</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="haircut-card">
+                        <div class="haircut-card__image">
+                            <img
+                                src="../images/demo-image.png"
+                                alt="Окрашивание волос"
+                            />
+                        </div>
+
+                        <div class="haircut-card__content">
+                            <h3>Окрашивание</h3>
+
+                            <p>
+                                От естественных оттенков до смелых изменений
+                                образа.
+                            </p>
+
+                            <div class="haircut-card__info">
+                                <span>от 3 500 ₽</span>
+                                <span>120 мин</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="haircut-card">
+                        <div class="haircut-card__image">
+                            <img
+                                src="../images/demo-image.png"
+                                alt="Укладка волос"
+                            />
+                        </div>
+
+                        <div class="haircut-card__content">
+                            <h3>Укладка</h3>
+
+                            <p>
+                                Объём, лёгкие волны или аккуратная укладка на
+                                каждый день.
+                            </p>
+
+                            <div class="haircut-card__info">
+                                <span>от 1 200 ₽</span>
+                                <span>45 мин</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Locations -->
+            <section id="locations" class="locations is-hidden">
+                <div class="section-heading">
+                    <div>
+                        <h2>Наши филиалы</h2>
+                    </div>
+
+                    <p>
+                        Выбери удобный салон
+                        <br />
+                        и приходи к нам.
+                    </p>
+                </div>
+
+                <div class="locations__content">
+                    <div class="locations__list">
+                        <article class="location">
+                            <span class="location__number">01</span>
+
+                            <div class="location__info">
+                                <h3>Центр</h3>
+
+                                <p>ул. Московская, 42</p>
+
+                                <span> Ежедневно · 10:00–22:00 </span>
+                            </div>
+                        </article>
+
+                        <article class="location">
+                            <span class="location__number">02</span>
+
+                            <div class="location__info">
+                                <h3>Октябрьский</h3>
+
+                                <p>ул. Чапаева, 18</p>
+
+                                <span> Ежедневно · 10:00–22:00 </span>
+                            </div>
+                        </article>
+
+                        <article class="location">
+                            <span class="location__number">03</span>
+
+                            <div class="location__info">
+                                <h3>Ленинский</h3>
+
+                                <p>ул. Тархова, 15</p>
+
+                                <span> Ежедневно · 10:00–22:00 </span>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="locations__map">
+                        <span>Карта филиалов</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Booking -->
+            <section id="booking" class="booking is-hidden">
+                <div class="booking__content">
+                    <h2>
+                        Запишись
+                        <br />
+                        на преображение
+                    </h2>
+
+                    <p>Выбери услугу, дату и удобное время.</p>
+
+                    <form class="booking__form">
+                        <label>
+                            Имя
+
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Ваше имя"
+                            />
+                        </label>
+
+                        <label>
+                            Телефон
+
+                            <input
+                                type="tel"
+                                name="phone"
+                                placeholder="+7 (___) ___-__-__"
+                            />
+                        </label>
+
+                        <label>
+                            Услуга
+
+                            <select name="service">
+                                <option value="">Выберите услугу</option>
+
+                                <option value="haircut">Стрижка</option>
+
+                                <option value="coloring">Окрашивание</option>
+
+                                <option value="styling">Укладка</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            Дата
+
+                            <input type="date" name="date" />
+                        </label>
+
+                        <button type="submit" class="button">Записаться</button>
+                    </form>
+                </div>
+            </section>
         </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <a class="logo" href="#">
+                        <span class="logo__icon">✂</span>
+                        <span class="logo__text">Чик Чик</span>
+                    </a>
+
+                    <p>
+                        Женская парикмахерская в Саратове.
+                        <br />
+                        Красота начинается с тебя.
+                    </p>
+                </div>
+
+                <nav class="footer__nav">
+                    <a href="#">Главная</a>
+                    <a href="#about">О нас</a>
+                    <a href="#haircuts">Услуги</a>
+                    <a href="#locations">Филиалы</a>
+                </nav>
+
+                <div class="footer__contacts">
+                    <span>Саратов</span>
+
+                    <a href="tel:+79000000000"> +7 (900) 000-00-00 </a>
+
+                    <a href="mailto:hello@chikchik.ru"> hello@chikchik.ru </a>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <span>© 2026 Чик Чик</span>
+
+                <span> Женская парикмахерская · Саратов </span>
+            </div>
+        </footer>
     </body>
 </html>
