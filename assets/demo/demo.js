@@ -52,13 +52,19 @@ function enableReact() {
     enableCSS();
     enableJavaScript();
 
-    const section = document.querySelector("#haircuts");
+    const haircutsSection = document.querySelector("#haircuts");
+    const locationsSection = document.querySelector("#locations");
 
-    if (section) {
-        section.classList.remove("is-hidden");
+    if (haircutsSection) {
+        haircutsSection.classList.remove("is-hidden");
+    }
+
+    if (locationsSection) {
+        locationsSection.classList.remove("is-hidden");
     }
 
     initServices();
+    initMap();
 }
 
 /* ================================ JS Function ================================ */
@@ -263,6 +269,95 @@ function initServices() {
             bannerPrice.textContent = card.dataset.price;
 
             bannerDuration.textContent = card.dataset.duration;
+        });
+    });
+}
+
+// Map
+async function initMap() {
+    const mapElement = document.querySelector("#map");
+
+    if (!mapElement) return;
+
+    const maplibregl =
+        await import("https://unpkg.com/maplibre-gl@6.11.2/dist/maplibre-gl.mjs");
+
+    const locations = [
+        {
+            id: "kovcheg",
+            name: "БЦ «Ковчег»",
+            address: "ул. Вавилова, 38/114",
+            position: [46.00988, 51.535208],
+        },
+        {
+            id: "bolshaya-gornaya",
+            name: "Большая Горная",
+            address: "ул. Большая Горная, 243/136",
+            position: [46.027774, 51.542789],
+        },
+        {
+            id: "nude-reform",
+            name: "Nude Reform",
+            address: "ул. Чернышевского, 14",
+            position: [45.988118, 51.51066],
+        },
+    ];
+
+    const map = new maplibregl.Map({
+        container: mapElement,
+        center: locations[0].position,
+        zoom: 12,
+
+        style: "https://tiles.openfreemap.org/styles/liberty",
+    });
+
+    const locationCards = document.querySelectorAll(".location");
+
+    const markers = [];
+
+    function setActiveLocation(index) {
+        const location = locations[index];
+
+        locationCards.forEach((card, cardIndex) => {
+            card.classList.toggle("is-active", cardIndex === index);
+        });
+
+        markers.forEach((marker, markerIndex) => {
+            marker
+                .getElement()
+                .classList.toggle("is-active", markerIndex === index);
+        });
+
+        map.flyTo({
+            center: location.position,
+            zoom: 15,
+            speed: 0.8,
+        });
+    }
+
+    locations.forEach((location, index) => {
+        const markerElement = document.createElement("button");
+
+        markerElement.className = "map-marker";
+        markerElement.type = "button";
+        markerElement.setAttribute("aria-label", location.name);
+
+        markerElement.addEventListener("click", () => {
+            setActiveLocation(index);
+        });
+
+        const marker = new maplibregl.Marker({
+            element: markerElement,
+        })
+            .setLngLat(location.position)
+            .addTo(map);
+
+        markers.push(marker);
+    });
+
+    locationCards.forEach((card, index) => {
+        card.addEventListener("click", () => {
+            setActiveLocation(index);
         });
     });
 }

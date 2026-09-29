@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <title>Чик Чик — Женская парикмахерская в Саратове</title>
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/maplibre-gl@6.11.2/dist/maplibre-gl.css"
+        />
 
         <script src="demo.js" defer></script>
     </head>
@@ -266,54 +270,43 @@
                         <h2>Наши филиалы</h2>
                     </div>
 
-                    <p>
-                        Выбери удобный салон
-                        <br />
-                        и приходи к нам.
-                    </p>
+                    <p>Выбери удобный салон и приходи к нам.</p>
                 </div>
 
                 <div class="locations__content">
                     <div class="locations__list">
                         <article class="location">
-                            <span class="location__number">01</span>
-
                             <div class="location__info">
-                                <h3>Центр</h3>
+                                <h3>БЦ «Ковчег»</h3>
 
-                                <p>ул. Московская, 42</p>
+                                <p>ул. Вавилова, 38/114</p>
 
-                                <span> Ежедневно · 10:00–22:00 </span>
+                                <span>Ежедневно · 10:00–22:00</span>
                             </div>
                         </article>
 
                         <article class="location">
-                            <span class="location__number">02</span>
-
                             <div class="location__info">
-                                <h3>Октябрьский</h3>
+                                <h3>Большая Горная</h3>
 
-                                <p>ул. Чапаева, 18</p>
+                                <p>ул. Большая Горная, 243/136</p>
 
-                                <span> Ежедневно · 10:00–22:00 </span>
+                                <span>Ежедневно · 10:00–22:00</span>
                             </div>
                         </article>
 
                         <article class="location">
-                            <span class="location__number">03</span>
-
                             <div class="location__info">
-                                <h3>Ленинский</h3>
+                                <h3>Nude Reform</h3>
 
-                                <p>ул. Тархова, 15</p>
+                                <p>ул. Чернышевского, 14</p>
 
-                                <span> Ежедневно · 10:00–22:00 </span>
+                                <span>Ежедневно · 10:00–22:00</span>
                             </div>
                         </article>
                     </div>
-
                     <div class="locations__map">
-                        <span>Карта филиалов</span>
+                        <div id="map" class="locations__map-container"></div>
                     </div>
                 </div>
             </section>

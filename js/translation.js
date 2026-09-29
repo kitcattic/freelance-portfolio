@@ -30,6 +30,7 @@ const translations = {
         aboutTitle: "FROM IDEA\nTO RESULTS",
         aboutDescription:
             "I'm a frontend developer who turns ideas and designs into functional digital experiences. I focus on the entire process — from understanding your goals to delivering the final product.",
+        aboutDetailsClose: "← BACK",
 
         planningTitle: "PLANNING",
         planningDescription:
@@ -114,6 +115,7 @@ const translations = {
         aboutTitle: "ОТ ИДЕИ\nДО РЕЗУЛЬТАТА",
         aboutDescription:
             "Я frontend-разработчик, который превращает идеи и дизайн в функциональные цифровые решения. Я работаю над всем процессом — от понимания ваших целей до создания готового продукта.",
+        aboutDetailsClose: "← НАЗАД",
 
         planningTitle: "ПЛАНИРОВАНИЕ",
         planningDescription:

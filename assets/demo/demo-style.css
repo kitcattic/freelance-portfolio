@@ -507,7 +507,7 @@ select {
     display: flex;
     flex-direction: column;
 
-    min-height: 560px;
+    min-height: 360px;
 
     overflow: hidden;
 
@@ -535,8 +535,6 @@ select {
 .haircut-card.is-active {
     border-color: var(--color-primary);
 }
-
-/* Image */
 
 .haircut-card__image {
     width: 100%;
@@ -586,14 +584,22 @@ select {
 
 .haircut-card__info {
     display: flex;
+    align-items: center;
     gap: 24px;
 
     margin-top: 28px;
 
     color: var(--color-primary);
 
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
+}
+
+.haircut-card__info span:first-child {
+    padding: 4px;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    color: var(--color-background);
 }
 
 /* ================================ Locations ================================ */
@@ -602,9 +608,15 @@ select {
     padding: 120px 0;
 }
 
+.location.is-active {
+    border-color: var(--color-primary);
+    background-color: var(--color-surface);
+}
+
 .locations__content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: row;
+
     gap: 20px;
 }
 
@@ -619,19 +631,16 @@ select {
     align-items: flex-start;
     gap: 20px;
 
+    min-width: fit-content;
+
     padding: 24px;
 
     background-color: var(--color-surface-light);
 
     border: 1px solid var(--color-border);
     border-radius: var(--radius-medium);
-}
 
-.location__number {
-    color: var(--color-primary);
-
-    font-size: 13px;
-    font-weight: 700;
+    cursor: pointer;
 }
 
 .location__info h3 {
@@ -651,21 +660,60 @@ select {
 }
 
 .locations__map {
-    min-height: 400px;
+    width: 100%;
+    height: 500px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background-color: var(--color-surface);
+    overflow: hidden;
 
     border: 1px solid var(--color-border);
     border-radius: var(--radius-medium);
 
-    color: var(--color-primary);
+    background-color: var(--color-surface);
 }
 
-/* ================================ king ================================ */
+.locations__map-container {
+    width: 100%;
+    height: 100%;
+}
+
+.map-marker {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+
+    border: 3px solid var(--color-white);
+    border-radius: 50%;
+
+    background-color: var(--color-primary);
+
+    box-shadow:
+        0 0 0 5px rgba(66, 42, 49, 0.18),
+        0 4px 12px rgba(0, 0, 0, 0.2);
+
+    cursor: pointer;
+
+    /*transition:
+        transform var(--transition),
+        box-shadow var(--transition);*/
+}
+
+.map-marker:hover {
+    transform: scale(1.25);
+
+    box-shadow:
+        0 0 0 7px rgba(66, 42, 49, 0.16),
+        0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.map-marker.is-active {
+    transform: scale(1.35);
+
+    box-shadow:
+        0 0 0 8px rgba(243, 46, 102, 0.18),
+        0 6px 18px rgba(243, 46, 102, 0.18);
+}
+
+/* ================================ Booking ================================ */
 
 .booking {
     padding: 120px 0;
