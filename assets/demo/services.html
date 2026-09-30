@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>Услуги — Чик Чик</title>
+
+        <link rel="stylesheet" href="demo-style.css" />
+    </head>
+
+    <body>
+        <!-- Header -->
+        <header class="header">
+            <a class="logo" href="#">
+                <span class="logo__icon">✂</span>
+                <span class="logo__text">Чик Чик</span>
+            </a>
+
+            <nav class="nav">
+                <a href="#">Главная</a>
+                <a href="#about">О нас</a>
+                <a href="#haircuts">Услуги</a>
+                <a href="#locations">Филиалы</a>
+            </nav>
+
+            <div class="header-info">
+                <span class="working-status" id="workingStatus"></span>
+
+                <a class="header__button" href="#booking"> Записаться </a>
+            </div>
+        </header>
+
+        <main class="services-page">
+            <a href="#" class="services-page__back"> ← Назад </a>
+
+            <header class="services-page__header">
+                <h1>Для твоих волос</h1>
+
+                <p>
+                    От лёгкой стрижки до полного преображения образа. Подберём
+                    услугу под твой стиль и настроение.
+                </p>
+            </header>
+
+            <section class="services-page__list">
+                <article class="service-page-card">
+                    <div class="service-page-card__image">
+                        <img
+                            src="haircuts/haircut-banner.webp"
+                            alt="Женская стрижка"
+                        />
+                    </div>
+
+                    <div class="service-page-card__content">
+                        <div>
+                            <h2>Стрижка</h2>
+
+                            <p>
+                                Подберём форму и длину, которые подчеркнут твой
+                                стиль.
+                            </p>
+                        </div>
+
+                        <div class="service-page-card__info">
+                            <span>от 1 500 ₽</span>
+                            <span>60 мин</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="service-page-card">
+                    <div class="service-page-card__image">
+                        <img
+                            src="haircuts/coloring-banner.webp"
+                            alt="Окрашивание волос"
+                        />
+                    </div>
+
+                    <div class="service-page-card__content">
+                        <div>
+                            <h2>Окрашивание</h2>
+
+                            <p>
+                                От естественных оттенков до смелых изменений
+                                образа.
+                            </p>
+                        </div>
+
+                        <div class="service-page-card__info">
+                            <span>от 3 500 ₽</span>
+                            <span>120 мин</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="service-page-card">
+                    <div class="service-page-card__image">
+                        <img
+                            src="haircuts/styling-banner.webp"
+                            alt="Укладка волос"
+                        />
+                    </div>
+
+                    <div class="service-page-card__content">
+                        <div>
+                            <h2>Укладка</h2>
+
+                            <p>
+                                Объём, лёгкие волны или аккуратная укладка на
+                                каждый день.
+                            </p>
+                        </div>
+
+                        <div class="service-page-card__info">
+                            <span>от 1 200 ₽</span>
+                            <span>45 мин</span>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer__top">
+                <div class="footer__brand">
+                    <a class="logo" href="#">
+                        <span class="logo__icon">✂</span>
+                        <span class="logo__text">Чик Чик</span>
+                    </a>
+
+                    <p>
+                        Женская парикмахерская в Саратове.
+                        <br />
+                        Красота начинается с тебя.
+                    </p>
+                </div>
+
+                <nav class="footer__nav">
+                    <a href="#">Главная</a>
+                    <a href="#about">О нас</a>
+                    <a href="#haircuts">Услуги</a>
+                    <a href="#locations">Филиалы</a>
+                </nav>
+
+                <div class="footer__contacts">
+                    <span>Саратов</span>
+
+                    <a href="tel:+79000000000"> +7 (900) 000-00-00 </a>
+
+                    <a href="mailto:hello@chikchik.ru"> hello@chikchik.ru </a>
+                </div>
+            </div>
+
+            <div class="footer__bottom">
+                <span>© 2026 Чик Чик</span>
+
+                <span>Женская парикмахерская · Саратов</span>
+            </div>
+        </footer>
+
+        <script>
+            const params = new URLSearchParams(window.location.search);
+            const skill = params.get("from") || "nextjs";
+
+            const mainUrl = `demo.html?skill=${skill}`;
+
+            const logo = document.querySelector(".header .logo");
+
+            if (logo) {
+                logo.href = mainUrl;
+            }
+
+            const navLinks = document.querySelectorAll(".nav a");
+
+            navLinks.forEach((link) => {
+                const href = link.getAttribute("href");
+
+                if (href === "#") {
+                    link.href = mainUrl;
+                } else {
+                    link.href = `${mainUrl}${href}`;
+                }
+            });
+
+            const bookingButton = document.querySelector(".header__button");
+
+            if (bookingButton) {
+                bookingButton.href = `${mainUrl}#booking`;
+            }
+
+            const backLink = document.querySelector(".services-page__back");
+
+            if (backLink) {
+                backLink.href = mainUrl;
+            }
+
+            const footerLogo = document.querySelector(".footer__brand .logo");
+
+            if (footerLogo) {
+                footerLogo.href = mainUrl;
+            }
+
+            const footerLinks = document.querySelectorAll(".footer__nav a");
+
+            footerLinks.forEach((link) => {
+                const href = link.getAttribute("href");
+
+                if (href === "#") {
+                    link.href = mainUrl;
+                } else {
+                    link.href = `${mainUrl}${href}`;
+                }
+            });
+        </script>
+    </body>
+</html>

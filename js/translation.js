@@ -86,6 +86,24 @@ const translations = {
         skillsReactDescription: "Component-based UI",
         skillsNextDescription: "Modern web framework",
         skillsTypeScriptDescription: "Typed JavaScript",
+        //Hints
+        skillsHtmlHint:
+            "Creates a clear website structure so visitors can easily find the information they need.",
+
+        skillsCssHint:
+            "Controls the website's appearance, responsive layout and visual consistency across different screens.",
+
+        skillsJsHint:
+            "Adds interactivity such as forms, sliders, buttons and other elements that respond to user actions.",
+
+        skillsReactHint:
+            "Makes it possible to build complex, responsive interfaces that feel fast and smooth for users.",
+
+        skillsNextHint:
+            "Helps make websites faster, easier to find in search engines and ready to grow with the project.",
+
+        skillsTypeScriptHint:
+            "Makes larger projects more stable and reduces the risk of errors as the website grows and changes.",
     },
 
     ru: {
@@ -171,6 +189,24 @@ const translations = {
         skillsReactDescription: "Компонентный интерфейс",
         skillsNextDescription: "Современный веб-фреймворк",
         skillsTypeScriptDescription: "Типизированный JavaScript",
+        //Hints
+        skillsHtmlHint:
+            "Создаёт понятную структуру сайта, чтобы посетителю было легко находить нужную информацию.",
+
+        skillsCssHint:
+            "Отвечает за внешний вид сайта: адаптивность, удобную верстку и соответствие дизайну.",
+
+        skillsJsHint:
+            "Добавляет интерактивность: формы, слайдеры, кнопки и другие элементы, которые реагируют на действия посетителя.",
+
+        skillsReactHint:
+            "Позволяет создавать сложные интерактивные интерфейсы, которые работают быстро и остаются удобными для пользователя.",
+
+        skillsNextHint:
+            "Помогает сделать сайт быстрым, хорошо индексируемым в поисковиках и удобным для дальнейшего развития.",
+
+        skillsTypeScriptHint:
+            "Помогает сделать крупный проект стабильнее и снижает вероятность ошибок при его развитии и поддержке.",
     },
 };
 

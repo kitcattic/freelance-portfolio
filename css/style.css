@@ -1038,7 +1038,7 @@ section {
 
 .skill-card {
     min-height: 80px;
-    width: 200px;
+    min-width: 200px;
     z-index: 100;
 
     display: flex;
@@ -1051,7 +1051,6 @@ section {
     background-color: var(--color-surface);
 
     color: var(--color-text-primary);
-    font-weight: 600;
     text-align: left;
 
     cursor: pointer;
@@ -1066,6 +1065,7 @@ section {
 .skill-card:active {
     transform: translateX(10px);
     transition: 0.3s;
+    transition: border-color var(--transition-medium);
 }
 
 .skill-card.is-active {
@@ -1082,7 +1082,57 @@ section {
     aspect-ratio: 1 / 1;
 }
 
+.skill-card__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 4px;
+    min-width: 0;
+    flex: 1;
+
+    transition:
+        transform 0.4s ease,
+        gap 0.4s ease;
+}
+
+.skill-card.is-active .skill-card__content {
+    transform: translateY(-1px);
+}
+
+.skill-card.is-pulse {
+    animation: button-pulse 3s ease-in-out infinite;
+}
+
+.skill-card-title {
+    font-weight: 600;
+}
+
+.skills__card-description {
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition:
+        max-height var(--transition),
+        opacity var(--transition),
+        margin var(--transition);
+}
+
+.skill-card.is-active .skills__card-description {
+    max-height: 30px;
+    opacity: 1;
+
+    transition:
+        max-height var(--transition),
+        opacity var(--transition),
+        margin var(--transition);
+}
+
 .skills__demo {
+    position: relative;
     width: 100%;
     z-index: 1;
 
@@ -1145,6 +1195,13 @@ section {
     background-color: rgb(30, 210, 30);
 }
 
+.skills__demo-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
 .skills__demo-frame {
     width: 100%;
     height: 100%;
@@ -1163,6 +1220,114 @@ section {
 .skills__demo-frame.is-switching {
     opacity: 0.8;
     filter: blur(18px);
+}
+
+.skills__demo-hint {
+    position: absolute;
+
+    /*top: 30%;
+    left: 50%;
+
+    transform: translate(10%, -50%);*/
+
+    top: calc(3% + 20px);
+    right: 1.5%;
+
+    width: 400px;
+    padding: 40px;
+
+    background-color: rgba(48, 48, 48, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.22),
+        0 4px 10px rgba(0, 0, 0, 0.12);
+
+    z-index: 10;
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.skills__demo-hint-text {
+    max-width: 340px;
+    margin: 0;
+    color: var(--color-text-primary);
+
+    font-size: 16px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.skills__demo-hint-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    border: 0;
+    background: transparent;
+
+    color: var(--color-text-secondary);
+    font-size: 28px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.skills__demo-hint-close:hover {
+    transform: rotate(90deg);
+    opacity: 0.65;
+}
+
+.skills__demo-hint.is-active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.skills__demo-annotation {
+    position: absolute;
+    inset: 0;
+    z-index: 9;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.skills__demo-annotation.is-active {
+    opacity: 1;
+}
+
+.skills__demo-marker {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #181818;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: #fff;
+}
+
+.skills__demo-line {
+    position: absolute;
+    height: 2px;
+    background: #181818;
+    transform-origin: left center;
 }
 
 /* Demo Window — Glow*/
@@ -1201,5 +1366,20 @@ section {
                     var(--demo-glow-color),
                     calc(var(--demo-glow-strength) * 0.2)
                 );
+    }
+}
+
+@keyframes button-pulse {
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+    }
+
+    50% {
+        transform: scale(1.02);
+        box-shadow:
+            0 0 18px rgba(255, 255, 255, 0.12),
+            0 0 45px rgba(255, 255, 255, 0.06);
     }
 }

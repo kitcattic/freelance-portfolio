@@ -375,7 +375,7 @@ const demoGlow = {
         strength: "0.7",
     },
 
-    "next-js": {
+    nextjs: {
         color: "245, 245, 245",
         strength: "0.8",
     },
@@ -386,12 +386,65 @@ const demoGlow = {
     },
 };
 
+/* ================================ Hints ================================ */
+
+const demoHint = document.querySelector(".skills__demo-hint");
+const demoHintClose = document.querySelector(".skills__demo-hint-close");
+const demoHintText = document.querySelector(".skills__demo-hint-text");
+
+const hintTranslations = {
+    html: {
+        ru: "Создаёт основу сайта, чтобы контент был понятным и удобным для пользователей.",
+        en: "Builds the basic structure of the website so all content is clear and easy to navigate.",
+    },
+
+    css: {
+        ru: "Делает сайт красивым, адаптивным и таким, как задумано в дизайне.",
+        en: "Makes the website look good, work well on different screens and match the desired design.",
+    },
+
+    javascript: {
+        ru: "Добавляет интерактивность: слайдеры, кнопки, анимации и динамический контент.",
+        en: "Adds interactive features like sliders, buttons, animations and dynamic content.",
+    },
+
+    react: {
+        ru: "Помогает создавать сложные интерактивные элементы, которые легко изменять и поддерживать.",
+        en: "Helps build complex interactive parts of the website that are easy to update and maintain.",
+    },
+
+    nextjs: {
+        ru: "Помогает сделать сайт быстрее и добавляет возможности вроде удобной навигации и SEO.",
+        en: "Helps make websites faster and adds features like page navigation and better SEO.",
+    },
+
+    typescript: {
+        ru: "Помогает избежать ошибок и сделать код надёжнее по мере развития проекта.",
+        en: "Helps prevent errors and makes the website code more reliable as the project grows.",
+    },
+};
+
+function hideDemoHint() {
+    demoHint.classList.remove("is-active");
+}
+
+function showDemoHint(skill) {
+    const language = document.documentElement.lang === "en" ? "en" : "ru";
+
+    demoHintText.textContent = hintTranslations[skill][language];
+
+    demoHint.classList.add("is-active");
+}
+
+/* ================================ Skills ================================ */
+
 skillCards.forEach((card) => {
     card.addEventListener("click", () => {
         const skill = card.dataset.skill;
 
         skillCards.forEach((item) => {
             item.classList.remove("is-active");
+            item.classList.remove("is-pulse");
         });
 
         card.classList.add("is-active");
@@ -409,9 +462,19 @@ skillCards.forEach((card) => {
         );
 
         demoFrame.src = `assets/demo/demo.html?skill=${skill}`;
+
+        showDemoHint(skill);
     });
 });
 
+/* ================================ Demo Load ================================ */
+
 demoFrame.addEventListener("load", () => {
     demoFrame.classList.remove("is-switching");
+
+    demoFrame.contentDocument.addEventListener("click", hideDemoHint);
 });
+
+/* ================================ Hint Close ================================ */
+
+demoHintClose.addEventListener("click", hideDemoHint);

@@ -13,6 +13,10 @@ if (skill === "css") {
     enableJavaScript();
 } else if (skill === "react") {
     enableReact();
+} else if (skill === "nextjs") {
+    enableNextJS();
+} else if (skill === "typescript") {
+    enableTypeScript();
 }
 
 // Hide Sections
@@ -45,11 +49,26 @@ function enableJavaScript() {
 
     enableWorkingStatus();
     initCarousel();
+
+    const carouselSection = document.querySelector(".hero__carousel");
+
+    requestAnimationFrame(() => {
+        if (carouselSection) {
+            carouselSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    });
+
+    addHighlight([
+        document.querySelector("#workingStatus"),
+        document.querySelector(".hero__carousel-track"),
+    ]);
 }
 
 // React
 function enableReact() {
-    enableCSS();
     enableJavaScript();
 
     const haircutsSection = document.querySelector("#haircuts");
@@ -65,6 +84,105 @@ function enableReact() {
 
     initServices();
     initMap();
+
+    requestAnimationFrame(() => {
+        if (haircutsSection) {
+            haircutsSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    });
+
+    addHighlight([
+        document.querySelector("#haircuts"),
+        document.querySelector("#locations"),
+    ]);
+}
+
+// Next js
+function enableNextJS() {
+    enableReact();
+
+    const nextPageLink = document.querySelector(".next-page-link");
+
+    if (nextPageLink) {
+        nextPageLink.classList.remove("is-hidden");
+    }
+
+    if (nextPageLink) {
+        nextPageLink.href = `services.html?from=${skill}`;
+        nextPageLink.classList.remove("is-hidden");
+    }
+
+    requestAnimationFrame(() => {
+        if (nextPageLink) {
+            nextPageLink.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    });
+
+    addHighlight(nextPageLink);
+}
+
+// TypeScript
+function enableTypeScript() {
+    enableReact();
+
+    const bookingButtons = document.querySelectorAll(".booking-button");
+    const heroBookingButton = document.querySelector(".hero__buttons");
+
+    bookingButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            openBookingModal();
+        });
+    });
+
+    requestAnimationFrame(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    });
+
+    addHighlight([
+        document.querySelector(".booking-button-hero"),
+        document.querySelector(".booking-button-header"),
+    ]);
+}
+
+// Add Highlight
+function addHighlight(objects) {
+    document.querySelectorAll(".demo-highlight").forEach((element) => {
+        element.classList.remove("demo-highlight");
+    });
+
+    if (!Array.isArray(objects)) {
+        objects = [objects];
+    }
+
+    objects.forEach((object) => {
+        object.classList.add("demo-highlight");
+
+        let timer;
+
+        object.addEventListener(
+            "mouseenter",
+            () => {
+                timer = setTimeout(() => {
+                    object.classList.remove("demo-highlight");
+                }, 100);
+            },
+            { once: true },
+        );
+
+        object.addEventListener("mouseleave", () => {
+            clearTimeout(timer);
+        });
+    });
 }
 
 /* ================================ JS Function ================================ */
@@ -361,3 +479,188 @@ async function initMap() {
         });
     });
 }
+
+/* ================================ Modal Booking ================================ */
+
+const bookingModal = document.querySelector(".booking-modal");
+const bookingModalClose = document.querySelector(".booking-modal__close");
+const bookingModalOverlay = document.querySelector(".booking-modal__overlay");
+
+const bookingButtons = document.querySelectorAll('a[href="#booking"]');
+
+const bookingForm = document.querySelector(".booking-modal__form");
+const bookingSuccess = document.querySelector(".booking-success");
+const bookingSuccessClose = document.querySelector(".booking-success__close");
+
+function openBookingModal() {
+    bookingModal.hidden = false;
+    bookingModal.setAttribute("aria-hidden", "false");
+
+    requestAnimationFrame(() => {
+        bookingModal.classList.add("is-active");
+    });
+
+    document.body.style.overflow = "hidden";
+}
+
+function closeBookingModal() {
+    bookingModal.classList.remove("is-active");
+    bookingModal.setAttribute("aria-hidden", "true");
+
+    document.body.style.overflow = "";
+
+    setTimeout(() => {
+        bookingModal.hidden = true;
+    }, 300);
+}
+
+bookingButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+        event.preventDefault();
+        openBookingModal();
+    });
+});
+
+bookingModalClose.addEventListener("click", closeBookingModal);
+
+bookingModalOverlay.addEventListener("click", closeBookingModal);
+
+document.addEventListener("keydown", (event) => {
+    if (
+        event.key === "Escape" &&
+        bookingModal.classList.contains("is-active")
+    ) {
+        closeBookingModal();
+    }
+});
+
+function initBookingCalendar() {
+    const calendar = document.querySelector(".booking-calendar");
+
+    if (!calendar) return;
+
+    const monthTitle = calendar.querySelector(".booking-calendar__month");
+    const daysContainer = calendar.querySelector(".booking-calendar__days");
+    const prevButton = calendar.querySelector(".booking-calendar__prev");
+    const nextButton = calendar.querySelector(".booking-calendar__next");
+    const dateInput = document.querySelector(".booking-modal__date");
+
+    let currentDate = new Date();
+    let selectedDate = null;
+
+    currentDate.setDate(1);
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    function renderCalendar() {
+        daysContainer.innerHTML = "";
+
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth();
+
+        const monthName = new Intl.DateTimeFormat("ru-RU", {
+            month: "long",
+            year: "numeric",
+        }).format(currentDate);
+
+        monthTitle.textContent =
+            monthName.charAt(0).toUpperCase() + monthName.slice(1);
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const startDay = firstDay === 0 ? 6 : firstDay - 1;
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        for (let i = 0; i < startDay; i++) {
+            daysContainer.appendChild(document.createElement("span"));
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const button = document.createElement("button");
+
+            button.type = "button";
+            button.textContent = day;
+
+            const date = new Date(year, month, day);
+            date.setHours(0, 0, 0, 0);
+
+            if (date < today) {
+                button.disabled = true;
+                button.classList.add("is-disabled");
+            }
+
+            if (selectedDate && date.getTime() === selectedDate.getTime()) {
+                button.classList.add("is-selected");
+            }
+
+            button.addEventListener("click", () => {
+                selectedDate = date;
+
+                const selectedYear = date.getFullYear();
+                const selectedMonth = String(date.getMonth() + 1).padStart(
+                    2,
+                    "0",
+                );
+                const selectedDay = String(date.getDate()).padStart(2, "0");
+
+                dateInput.value = `${selectedYear}-${selectedMonth}-${selectedDay}`;
+
+                renderCalendar();
+            });
+
+            daysContainer.appendChild(button);
+        }
+    }
+
+    prevButton.addEventListener("click", () => {
+        const currentMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+
+        const previousMonth = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth() - 1,
+            1,
+        );
+
+        if (previousMonth < currentMonth) {
+            return;
+        }
+
+        currentDate.setMonth(currentDate.getMonth() - 1);
+
+        renderCalendar();
+    });
+
+    nextButton.addEventListener("click", () => {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+
+        renderCalendar();
+    });
+
+    renderCalendar();
+}
+
+bookingForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    closeBookingModal();
+
+    setTimeout(() => {
+        bookingSuccess.hidden = false;
+        bookingSuccess.setAttribute("aria-hidden", "false");
+
+        requestAnimationFrame(() => {
+            bookingSuccess.classList.add("is-active");
+        });
+    }, 300);
+});
+
+bookingSuccessClose.addEventListener("click", () => {
+    bookingSuccess.classList.remove("is-active");
+    bookingSuccess.setAttribute("aria-hidden", "true");
+
+    setTimeout(() => {
+        bookingSuccess.hidden = true;
+    }, 300);
+});
+
+initBookingCalendar();

@@ -603,12 +603,16 @@
                             </span>
 
                             <span class="skill-card__content">
-                                <span class="skill-card__title">HTML 5</span>
+                                <span class="skill-card-title">HTML</span>
+                                <p
+                                    class="skills__card-description"
+                                    data-i18n="skillsHtmlDescription"
+                                ></p>
                             </span>
                         </button>
 
                         <button
-                            class="skill-card"
+                            class="skill-card is-pulse"
                             type="button"
                             data-skill="css"
                             data-description="skillsCssDescription"
@@ -618,7 +622,11 @@
                             </span>
 
                             <span class="skill-card__content">
-                                <span class="skill-card__title">CSS 3</span>
+                                <span class="skill-card-title">CSS</span>
+                                <p
+                                    class="skills__card-description"
+                                    data-i18n="skillsCssDescription"
+                                ></p>
                             </span>
                         </button>
 
@@ -633,9 +641,11 @@
                             </span>
 
                             <span class="skill-card__content">
-                                <span class="skill-card__title"
-                                    >JavaScript</span
-                                >
+                                <span class="skill-card-title">JavaScript</span>
+                                <p
+                                    class="skills__card-description"
+                                    data-i18n="skillsJsDescription"
+                                ></p>
                             </span>
                         </button>
 
@@ -650,7 +660,11 @@
                             </span>
 
                             <span class="skill-card__content">
-                                <span class="skill-card__title">React</span>
+                                <span class="skill-card-title">React</span>
+                                <p
+                                    class="skills__card-description"
+                                    data-i18n="skillsReactDescription"
+                                ></p>
                             </span>
                         </button>
 
@@ -665,7 +679,12 @@
                             </span>
 
                             <span class="skill-card__content">
-                                <span class="skill-card__title">Next.js</span>
+                                <span class="skill-card-title">Next.js</span>
+
+                                <p
+                                    class="skills__card-description"
+                                    data-i18n="skillsNextDescription"
+                                ></p>
                             </span>
                         </button>
 
@@ -680,9 +699,11 @@
                             </span>
 
                             <span class="skill-card__content">
-                                <span class="skill-card__title"
-                                    >TypeScript</span
-                                >
+                                <span class="skill-card-title">TypeScript</span>
+                                <p
+                                    class="skills__card-description"
+                                    data-i18n="skillsTypeScriptDescription"
+                                ></p>
                             </span>
                         </button>
                     </div>
@@ -696,11 +717,29 @@
                             <span class="skills__demo-label">demo.com</span>
                         </div>
 
-                        <iframe
-                            class="skills__demo-frame"
-                            src="assets/demo/demo.html"
-                            title="Skills demo"
-                        ></iframe>
+                        <div class="skills__demo-content">
+                            <iframe
+                                class="skills__demo-frame"
+                                src="assets/demo/demo.html"
+                                title="Skills demo"
+                            ></iframe>
+                        </div>
+
+                        <div class="skills__demo-annotation">
+                            <span class="skills__demo-marker"></span>
+                            <span class="skills__demo-line"></span>
+                        </div>
+                        <div class="skills__demo-hint">
+                            <button
+                                class="skills__demo-hint-close"
+                                type="button"
+                                aria-label="Close"
+                            >
+                                ×
+                            </button>
+
+                            <p class="skills__demo-hint-text"></p>
+                        </div>
                     </div>
                 </div>
             </section>

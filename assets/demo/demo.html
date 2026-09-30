@@ -29,7 +29,9 @@
 
             <div class="header-info">
                 <span class="working-status" id="workingStatus"></span>
-                <a class="header__button" href="#booking"> Записаться </a>
+                <a class="header__button booking-button booking-button-header">
+                    Записаться
+                </a>
             </div>
         </header>
 
@@ -52,7 +54,9 @@
                     </p>
 
                     <div class="hero__buttons">
-                        <a class="button" href="#booking"> Записаться </a>
+                        <a class="button booking-button booking-button-hero">
+                            Записаться
+                        </a>
 
                         <a class="button button--outline" href="#haircuts">
                             Смотреть услуги
@@ -261,6 +265,14 @@
                         </div>
                     </article>
                 </div>
+
+                <a
+                    href="services.html"
+                    id="next-page-link"
+                    class="next-page-link is-hidden"
+                >
+                    Смотреть все услуги →
+                </a>
             </section>
 
             <!-- Locations -->
@@ -311,62 +323,163 @@
                 </div>
             </section>
 
-            <!-- Booking -->
-            <section id="booking" class="booking is-hidden">
-                <div class="booking__content">
-                    <h2>
-                        Запишись
-                        <br />
-                        на преображение
-                    </h2>
+            <!-- Booking Modal -->
 
-                    <p>Выбери услугу, дату и удобное время.</p>
+            <div class="booking-modal" id="booking" aria-hidden="true" hidden>
+                <div class="booking-modal__overlay"></div>
 
-                    <form class="booking__form">
-                        <label>
-                            Имя
+                <div
+                    class="booking-modal__window"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="booking-title"
+                >
+                    <button
+                        class="booking-modal__close"
+                        type="button"
+                        aria-label="Закрыть"
+                    >
+                        ×
+                    </button>
 
-                            <input
-                                type="text"
-                                name="name"
-                                placeholder="Ваше имя"
-                            />
-                        </label>
+                    <div class="booking-modal__content">
+                        <div class="booking-modal__heading">
+                            <h2 id="booking-title">
+                                Запишись
+                                <br />
+                                на преображение
+                            </h2>
 
-                        <label>
-                            Телефон
+                            <p>
+                                Выбери услугу, удобную дату и оставь свою почту
+                                для подтверждения.
+                            </p>
+                        </div>
 
-                            <input
-                                type="tel"
-                                name="phone"
-                                placeholder="+7 (___) ___-__-__"
-                            />
-                        </label>
+                        <form class="booking-modal__form">
+                            <label class="booking-modal__field">
+                                <span>Имя</span>
 
-                        <label>
-                            Услуга
+                                <input
+                                    type="text"
+                                    name="name"
+                                    placeholder="Ваше имя"
+                                    autocomplete="name"
+                                    required
+                                />
+                            </label>
 
-                            <select name="service">
-                                <option value="">Выберите услугу</option>
+                            <label class="booking-modal__field">
+                                <span>Услуга</span>
 
-                                <option value="haircut">Стрижка</option>
+                                <select name="service" required>
+                                    <option value="" selected disabled>
+                                        Выберите услугу
+                                    </option>
 
-                                <option value="coloring">Окрашивание</option>
+                                    <option value="haircut">
+                                        Стрижка — от 1 500 ₽
+                                    </option>
 
-                                <option value="styling">Укладка</option>
-                            </select>
-                        </label>
+                                    <option value="coloring">
+                                        Окрашивание — от 3 500 ₽
+                                    </option>
 
-                        <label>
-                            Дата
+                                    <option value="styling">
+                                        Укладка — от 1 200 ₽
+                                    </option>
+                                </select>
+                            </label>
 
-                            <input type="date" name="date" />
-                        </label>
+                            <div class="booking-modal__field">
+                                <span>Дата</span>
 
-                        <button type="submit" class="button">Записаться</button>
-                    </form>
+                                <div class="booking-calendar">
+                                    <div class="booking-calendar__header">
+                                        <button
+                                            type="button"
+                                            class="booking-calendar__prev"
+                                            aria-label="Предыдущий месяц"
+                                        >
+                                            ←
+                                        </button>
+
+                                        <strong class="booking-calendar__month">
+                                            Октябрь 2026
+                                        </strong>
+
+                                        <button
+                                            type="button"
+                                            class="booking-calendar__next"
+                                            aria-label="Следующий месяц"
+                                        >
+                                            →
+                                        </button>
+                                    </div>
+
+                                    <div class="booking-calendar__weekdays">
+                                        <span>Пн</span>
+                                        <span>Вт</span>
+                                        <span>Ср</span>
+                                        <span>Чт</span>
+                                        <span>Пт</span>
+                                        <span>Сб</span>
+                                        <span>Вс</span>
+                                    </div>
+
+                                    <div class="booking-calendar__days">
+                                        <!-- JS -->
+                                    </div>
+                                </div>
+
+                                <input
+                                    type="hidden"
+                                    name="date"
+                                    class="booking-modal__date"
+                                    required
+                                />
+                            </div>
+
+                            <label class="booking-modal__field">
+                                <span>Почта</span>
+
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="example@mail.com"
+                                    autocomplete="email"
+                                    required
+                                />
+                            </label>
+
+                            <button
+                                type="submit"
+                                class="button booking-modal__submit"
+                            >
+                                Записаться
+                            </button>
+                        </form>
+                    </div>
                 </div>
-            </section>
+            </div>
+
+            <div class="booking-success" aria-hidden="true" hidden>
+                <div class="booking-success__content">
+                    <span class="booking-success__icon">✓</span>
+
+                    <h3>Вы записаны</h3>
+
+                    <p>
+                        Заявка отправлена.
+                        <br />
+                        Подтверждение записи ждите на почте.
+                    </p>
+
+                    <button type="button" class="button booking-success__close">
+                        Хорошо
+                    </button>
+                </div>
+            </div>
         </main>
 
         <!-- Footer -->
