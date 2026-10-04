@@ -1,6 +1,7 @@
 [
     {
         "name": "nordform-architects",
+        "enabled": true,
         "title": {
             "en": "Nordform Architects",
             "ru": "Nordform Architects"
@@ -28,11 +29,12 @@
         ],
         "url": "https://kitcattic.github.io/nordform-architects/",
         "github": "https://github.com/kitcattic/nordform-architects",
-        "figma": "..."
+        "figma": "https://www.figma.com/design/OkanSxmPUvvatOXwj0HTRy/Nordform-Architects?node-id=110-170&t=q1QMW3Ffr4Cfc6F4-1"
     },
 
     {
         "name": "cat-game",
+        "enabled": false,
         "title": {
             "en": "Cat Game",
             "ru": "Cat Game"

@@ -44,18 +44,23 @@ function createProjectCard(project) {
     const currentLanguage = localStorage.getItem("language") || "en";
 
     const card = document.createElement("article");
-    card.addEventListener("click", (event) => {
-        if (event.target.closest("a")) return;
-
-        openCard(card);
-    });
 
     card.classList.add("project-card");
+    card.projectData = project;
+
+    card.addEventListener("click", (event) => {
+        const link = event.target.closest(".project-card__link");
+
+        if (link) return;
+
+        openProjectModal(project);
+    });
+
     card.innerHTML = `
         <a class="project-card__image" target="_blank">
             <img
                 src="assets/images/${project.image}"
-                alt="${project.title}"
+                alt="${project.title[currentLanguage]}"
             >
         </a>
 
@@ -99,9 +104,9 @@ function createProjectCard(project) {
             </div>
 
             <div class="project-card__right">
-                <a class="project-card__link"
-                    href="${project.url}"
+                <a
                     class="project-card__link"
+                    href="${project.url}"
                     target="_blank"
                 >
                     <svg
@@ -109,7 +114,7 @@ function createProjectCard(project) {
                         height="20"
                         viewBox="0 0 24 24"
                         fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                        
                     >
                         <path
                             d="M14 5H19V10"
@@ -138,7 +143,8 @@ function createProjectCard(project) {
                     ${project.year}
                 </p>
             </div>
-        </div>`;
+        </div>
+    `;
 
     return card;
 }
@@ -152,21 +158,205 @@ async function renderProjects() {
 
     const projects = await response.json();
 
+    const visibleProjects = projects.filter(
+        (project) => project.enabled !== false,
+    );
+
     const projectsGrid = document.querySelector(".projects__grid");
+
     projectsGrid.innerHTML = "";
 
-    projects.forEach((project) => {
-        const card = createProjectCard(project);
-
-        projectsGrid.append(card);
+    visibleProjects.forEach((project) => {
+        projectsGrid.appendChild(createProjectCard(project));
     });
 }
 
 // ================ Card Open ================
 
-function openCard(card) {
-    card.classList.add("is-open");
+const projectModal = document.createElement("div");
+
+projectModal.className = "project-modal";
+
+projectModal.innerHTML = `
+    <div class="project-modal__overlay"></div>
+
+    <button
+        class="project-modal__close"
+        type="button"
+        aria-label="Close"
+    >
+        ×
+    </button>
+
+    <div class="project-modal__window">
+
+        <div class="project-modal__preview">
+            <iframe
+                class="project-modal__iframe"
+                src=""
+                title=""
+            ></iframe>
+        </div>
+
+        <div class="project-modal__content">
+
+            <div class="project-modal__header">
+                <div>
+                    <p class="project-modal__category"></p>
+                    <h2 class="project-modal__title"></h2>
+                </div>
+                <a
+                    class="project-modal__site-icon"
+                    target="_blank"
+                    aria-label="Open project"
+                >
+                    <span>VISIT SITE</span>
+
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                    >
+                        <path
+                            d="M14 5H19V10"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                        <path
+                            d="M19 5L12 12"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+                        <path
+                            d="M19 13V19H5V5H11"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </a>
+            </div>
+
+            <p class="project-modal__description"></p>
+                <div class="project-modal__links">
+                <a
+                    class="project-modal__github"
+                    target="_blank"
+                >
+                    <img
+                        src="assets/icons/github-mono.svg"
+                        alt=""
+                        aria-hidden="true"
+                    >
+                    GITHUB ↗
+                </a>
+
+                <a
+                    class="project-modal__figma"
+                    target="_blank"
+                >
+                    <img
+                        src="assets/icons/figma-mono.svg"
+                        alt=""
+                        aria-hidden="true"
+                    >
+                    FIGMA ↗
+                </a>
+                </div>
+            <div class="project-modal__footer">
+                <div class="project-modal__stack"></div>
+                <span class="project-modal__year"></span>
+            </div>
+
+        </div>
+    </div>
+`;
+
+document.body.append(projectModal);
+
+const projectModalOverlay = projectModal.querySelector(
+    ".project-modal__overlay",
+);
+const projectModalWindow = projectModal.querySelector(".project-modal__window");
+const projectModalClose = projectModal.querySelector(".project-modal__close");
+const projectModalIframe = projectModal.querySelector(".project-modal__iframe");
+const projectModalCategory = projectModal.querySelector(
+    ".project-modal__category",
+);
+const projectModalTitle = projectModal.querySelector(".project-modal__title");
+const projectModalYear = projectModal.querySelector(".project-modal__year");
+const projectModalDescription = projectModal.querySelector(
+    ".project-modal__description",
+);
+const projectModalStack = projectModal.querySelector(".project-modal__stack");
+const projectModalGithub = projectModal.querySelector(".project-modal__github");
+const projectModalFigma = projectModal.querySelector(".project-modal__figma");
+const projectModalSiteIcon = projectModal.querySelector(
+    ".project-modal__site-icon",
+);
+
+function openProjectModal(project) {
+    const currentLanguage = localStorage.getItem("language") || "en";
+
+    projectModalIframe.src = project.url;
+    projectModalIframe.title = project.title[currentLanguage];
+
+    projectModalTitle.textContent = project.title[currentLanguage];
+    projectModalCategory.textContent = project.category[currentLanguage];
+    projectModalYear.textContent = project.year;
+
+    projectModalDescription.textContent =
+        project.fullDescription?.[currentLanguage] ||
+        project.description[currentLanguage];
+
+    projectModalStack.innerHTML = project.stack
+        .map((technology) => `<span>${technology}</span>`)
+        .join("");
+
+    projectModalGithub.href = project.github || "#";
+
+    projectModalFigma.href = project.figma || "#";
+
+    projectModalSiteIcon.href = project.url || "#";
+
+    projectModal.classList.add("is-active");
+
+    document.body.style.overflow = "hidden";
 }
+
+function closeProjectModal() {
+    projectModal.classList.remove("is-active");
+
+    projectModalIframe.src = "";
+
+    document.body.style.overflow = "";
+}
+
+projectModalClose.addEventListener("click", closeProjectModal);
+
+projectModalOverlay.addEventListener("click", closeProjectModal);
+
+navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+        if (projectModal.classList.contains("is-active")) {
+            closeProjectModal();
+        }
+    });
+});
+
+document.addEventListener("keydown", (event) => {
+    if (
+        event.key === "Escape" &&
+        projectModal.classList.contains("is-active")
+    ) {
+        closeProjectModal();
+    }
+});
 
 /* ================================= Steps ================================= */
 
@@ -322,6 +512,10 @@ navLinks.forEach((link) => {
     link.addEventListener("click", () => {
         if (about.classList.contains("details-open")) {
             closeDetails();
+        }
+
+        if (projectModal.classList.contains("is-active")) {
+            closeProjectModal();
         }
     });
 });

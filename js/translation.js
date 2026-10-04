@@ -87,6 +87,9 @@ const translations = {
         skillsNextDescription: "Modern web framework",
         skillsTypeScriptDescription: "Typed JavaScript",
         //Hints
+        skillsDemoInfo:
+            "Interactive project demo. Select a technology on the left to see what capabilities it adds to the project.",
+
         skillsHtmlHint:
             "Creates a clear website structure so visitors can easily find the information they need.",
 
@@ -190,6 +193,8 @@ const translations = {
         skillsNextDescription: "Современный веб-фреймворк",
         skillsTypeScriptDescription: "Типизированный JavaScript",
         //Hints
+        skillsDemoInfo:
+            "Интерактивная демонстрация проекта. Выбери технологию слева, чтобы увидеть, какие возможности она добавляет в проект.",
         skillsHtmlHint:
             "Создаёт понятную структуру сайта, чтобы посетителю было легко находить нужную информацию.",
 
