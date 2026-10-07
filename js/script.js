@@ -372,12 +372,10 @@ let isAnimating = false;
 /* ================================ Progress ================================ */
 
 function updateProgress(index) {
-    // Сначала сбрасываем ВСЕ progress
     document.querySelectorAll(".progress-item").forEach((item) => {
         item.classList.remove("active");
     });
 
-    // Берём progress только у текущего details
     const currentDetails = document.querySelector(
         `.about__details[data-index="${index}"]`,
     );
@@ -411,6 +409,7 @@ aboutSteps.forEach((step) => {
         });
 
         about.classList.add("details-open");
+        document.body.style.overflow = "hidden";
 
         updateProgress(index);
         startStepSlider();
@@ -534,6 +533,7 @@ function closeDetails() {
     });
 
     about.classList.remove("details-open");
+    document.body.style.overflow = "";
 
     setTimeout(() => {
         aboutSteps.forEach((step) => {

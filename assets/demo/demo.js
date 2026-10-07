@@ -129,7 +129,7 @@ function enableNextJS() {
 
 // TypeScript
 function enableTypeScript() {
-    enableReact();
+    enableNextJS();
 
     const bookingButtons = document.querySelectorAll(".booking-button");
     const heroBookingButton = document.querySelector(".hero__buttons");

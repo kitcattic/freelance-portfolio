@@ -107,6 +107,10 @@ const translations = {
 
         skillsTypeScriptHint:
             "Makes larger projects more stable and reduces the risk of errors as the website grows and changes.",
+        //Contact
+        contactTitle: "Let's work together",
+        contactDescription:
+            "Have a website idea? Let's turn it into a real product.",
     },
 
     ru: {
@@ -212,6 +216,10 @@ const translations = {
 
         skillsTypeScriptHint:
             "Помогает сделать крупный проект стабильнее и снижает вероятность ошибок при его развитии и поддержке.",
+        //Contacts
+        contactTitle: "Давайте работать вместе",
+        contactDescription:
+            "Есть идея для сайта? Давайте превратим её в реальный продукт.",
     },
 };
 
