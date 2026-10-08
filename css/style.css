@@ -1854,19 +1854,50 @@ section {
 
     font: var(--text-body-l);
 
-    transition:
-        background-color 0.2s ease,
-        color 0.2s ease;
+    transition: var(--transition-medium);
+}
+
+.contact__link-email {
+    background: linear-gradient(
+        90deg,
+        #8bb6b7 0%,
+        #6b8989 20%,
+        #2e3738 42%,
+        #111 65%,
+        #111 100%
+    );
+}
+
+.contact__link-telegram {
+    background: linear-gradient(
+        90deg,
+        #24a1de 0%,
+        #1b658b 20%,
+        #124056 42%,
+        #111 65%,
+        #111 100%
+    );
+}
+
+.contact__link-github {
+    background: linear-gradient(
+        90deg,
+        #00a86b 0%,
+        #075b3f 20%,
+        #023826 42%,
+        #111 65%,
+        #111 100%
+    );
 }
 
 .contact__link span:first-child {
-    font: var(--text-body-l);
-    color: var(--color-text-secondary);
+    font: var(--text-h3);
 }
 
 .contact__link:hover {
-    background-color: var(--color-text-primary);
+    background: var(--color-text-primary);
     color: var(--color-background);
+    transition: var(--transition-medium);
 }
 
 .contact__link:hover span:first-child {
