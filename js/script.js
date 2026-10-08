@@ -34,6 +34,51 @@ sections.forEach((section) => {
 
 /* ================================= Projects ================================= */
 
+let savedBodyOverflow = "";
+let savedDocumentOverflow = "";
+let savedHeaderStyles = {};
+let activeScrollLocks = 0;
+
+function lockPageScroll() {
+    if (activeScrollLocks === 0) {
+        const header = document.querySelector(".header");
+
+        savedBodyOverflow = document.body.style.overflow;
+        savedDocumentOverflow = document.documentElement.style.overflow;
+        savedHeaderStyles = {
+            position: header.style.position,
+            top: header.style.top,
+            left: header.style.left,
+            right: header.style.right,
+            width: header.style.width,
+            zIndex: header.style.zIndex,
+        };
+
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden";
+        header.style.position = "fixed";
+        header.style.top = "0";
+        header.style.left = "0";
+        header.style.right = "0";
+        header.style.width = "100%";
+        header.style.zIndex = "1101";
+    }
+
+    activeScrollLocks += 1;
+}
+
+function unlockPageScroll() {
+    activeScrollLocks = Math.max(0, activeScrollLocks - 1);
+
+    if (activeScrollLocks === 0) {
+        const header = document.querySelector(".header");
+
+        document.body.style.overflow = savedBodyOverflow;
+        document.documentElement.style.overflow = savedDocumentOverflow;
+        Object.assign(header.style, savedHeaderStyles);
+    }
+}
+
 const header = document.querySelector(".header");
 
 window.addEventListener("scroll", () => {
@@ -114,7 +159,6 @@ function createProjectCard(project) {
                         height="20"
                         viewBox="0 0 24 24"
                         fill="none"
-                        
                     >
                         <path
                             d="M14 5H19V10"
@@ -189,7 +233,6 @@ projectModal.innerHTML = `
     </button>
 
     <div class="project-modal__window">
-
         <div class="project-modal__preview">
             <iframe
                 class="project-modal__iframe"
@@ -199,20 +242,19 @@ projectModal.innerHTML = `
         </div>
 
         <div class="project-modal__content">
-
             <div class="project-modal__header">
                 <div>
                     <p class="project-modal__category"></p>
                     <h2 class="project-modal__title"></h2>
                 </div>
+
                 <a
                     class="project-modal__site-icon"
                     target="_blank"
                     aria-label="Open project"
                 >
-                    <span>VISIT SITE</span>
-
-                    <svg
+                    <span>VISIT SITE </span>
+                                        <svg
                         width="20"
                         height="20"
                         viewBox="0 0 24 24"
@@ -243,7 +285,8 @@ projectModal.innerHTML = `
             </div>
 
             <p class="project-modal__description"></p>
-                <div class="project-modal__links">
+
+            <div class="project-modal__links">
                 <a
                     class="project-modal__github"
                     target="_blank"
@@ -267,12 +310,12 @@ projectModal.innerHTML = `
                     >
                     FIGMA ↗
                 </a>
-                </div>
+            </div>
+
             <div class="project-modal__footer">
                 <div class="project-modal__stack"></div>
                 <span class="project-modal__year"></span>
             </div>
-
         </div>
     </div>
 `;
@@ -282,7 +325,6 @@ document.body.append(projectModal);
 const projectModalOverlay = projectModal.querySelector(
     ".project-modal__overlay",
 );
-const projectModalWindow = projectModal.querySelector(".project-modal__window");
 const projectModalClose = projectModal.querySelector(".project-modal__close");
 const projectModalIframe = projectModal.querySelector(".project-modal__iframe");
 const projectModalCategory = projectModal.querySelector(
@@ -319,26 +361,20 @@ function openProjectModal(project) {
         .join("");
 
     projectModalGithub.href = project.github || "#";
-
     projectModalFigma.href = project.figma || "#";
-
     projectModalSiteIcon.href = project.url || "#";
 
     projectModal.classList.add("is-active");
-
-    document.body.style.overflow = "hidden";
+    lockPageScroll();
 }
 
 function closeProjectModal() {
     projectModal.classList.remove("is-active");
-
     projectModalIframe.src = "";
-
-    document.body.style.overflow = "";
+    unlockPageScroll();
 }
 
 projectModalClose.addEventListener("click", closeProjectModal);
-
 projectModalOverlay.addEventListener("click", closeProjectModal);
 
 navLinks.forEach((link) => {
@@ -369,8 +405,6 @@ let currentStep = 1;
 let stepInterval = null;
 let isAnimating = false;
 
-/* ================================ Progress ================================ */
-
 function updateProgress(index) {
     document.querySelectorAll(".progress-item").forEach((item) => {
         item.classList.remove("active");
@@ -382,14 +416,10 @@ function updateProgress(index) {
 
     if (!currentDetails) return;
 
-    const progressItems = currentDetails.querySelectorAll(".progress-item");
-
-    progressItems.forEach((item, itemIndex) => {
-        item.classList.toggle("active", itemIndex + 1 === index);
+    currentDetails.querySelectorAll(".progress-item").forEach((item, i) => {
+        item.classList.toggle("active", i + 1 === index);
     });
 }
-
-/* ================================ Open ================================ */
 
 aboutSteps.forEach((step) => {
     step.addEventListener("click", () => {
@@ -397,9 +427,7 @@ aboutSteps.forEach((step) => {
 
         currentStep = index;
 
-        aboutSteps.forEach((item) => {
-            item.classList.add("is-hiding");
-        });
+        aboutSteps.forEach((item) => item.classList.add("is-hiding"));
 
         aboutDetails.forEach((details) => {
             details.classList.toggle(
@@ -409,24 +437,20 @@ aboutSteps.forEach((step) => {
         });
 
         about.classList.add("details-open");
-        document.body.style.overflow = "hidden";
+        lockPageScroll();
 
         updateProgress(index);
         startStepSlider();
     });
 });
 
-/* ================================ Change Step ================================ */
-
 function changeStep(nextStep) {
-    if (isAnimating) return;
-    if (nextStep === currentStep) return;
+    if (isAnimating || nextStep === currentStep) return;
     if (nextStep < 1 || nextStep > 4) return;
 
     const currentDetails = document.querySelector(
         `.about__details[data-index="${currentStep}"]`,
     );
-
     const nextDetails = document.querySelector(
         `.about__details[data-index="${nextStep}"]`,
     );
@@ -434,19 +458,10 @@ function changeStep(nextStep) {
     if (!currentDetails || !nextDetails) return;
 
     isAnimating = true;
-
     const direction = nextStep > currentStep ? "left" : "right";
 
-    /* Новый слайд */
-
-    nextDetails.classList.add("is-open");
-    nextDetails.classList.add(`slide-in-${direction}`);
-
-    /* Старый слайд */
-
+    nextDetails.classList.add("is-open", `slide-in-${direction}`);
     currentDetails.classList.add(`slide-out-${direction}`);
-
-    /* Progress */
 
     updateProgress(nextStep);
 
@@ -456,7 +471,6 @@ function changeStep(nextStep) {
             "slide-out-left",
             "slide-out-right",
         );
-
         nextDetails.classList.remove("slide-in-left", "slide-in-right");
 
         currentStep = nextStep;
@@ -464,44 +478,27 @@ function changeStep(nextStep) {
     }, 600);
 }
 
-/* ================================ Progress Click ================================ */
-
 aboutDetails.forEach((details) => {
-    const progressItems = details.querySelectorAll(".progress-item");
-
-    progressItems.forEach((item, index) => {
+    details.querySelectorAll(".progress-item").forEach((item, index) => {
         item.addEventListener("click", (event) => {
             event.stopPropagation();
 
-            // Клик работает только у открытого details
             if (!details.classList.contains("is-open")) return;
 
-            const nextStep = index + 1;
-
-            changeStep(nextStep);
-
+            changeStep(index + 1);
             startStepSlider();
         });
     });
 });
 
-/* ================================ Auto Slider ================================ */
-
 function startStepSlider() {
     clearInterval(stepInterval);
 
     stepInterval = setInterval(() => {
-        let nextStep = currentStep + 1;
-
-        if (nextStep > 4) {
-            nextStep = 1;
-        }
-
+        const nextStep = currentStep === 4 ? 1 : currentStep + 1;
         changeStep(nextStep);
     }, 7000);
 }
-
-/* ================================ Close ================================ */
 
 aboutDetailsClose.forEach((button) => {
     button.addEventListener("click", closeDetails);
@@ -533,54 +530,27 @@ function closeDetails() {
     });
 
     about.classList.remove("details-open");
-    document.body.style.overflow = "";
+    unlockPageScroll();
 
     setTimeout(() => {
-        aboutSteps.forEach((step) => {
-            step.classList.remove("is-hiding");
-        });
+        aboutSteps.forEach((step) => step.classList.remove("is-hiding"));
     }, 300);
 }
 
-/* ================================ Demo ================================ */
+/* ================================= Demo ================================= */
 
 const skillCards = document.querySelectorAll(".skill-card");
 const demoFrame = document.querySelector(".skills__demo-frame");
 const demoWindow = document.querySelector(".skills__demo");
 
 const demoGlow = {
-    html: {
-        color: "211, 90, 54",
-        strength: "0.45",
-    },
-
-    css: {
-        color: "48, 76, 220",
-        strength: "0.5",
-    },
-
-    javascript: {
-        color: "241, 223, 79",
-        strength: "0.6",
-    },
-
-    react: {
-        color: "161, 213, 225",
-        strength: "0.7",
-    },
-
-    nextjs: {
-        color: "245, 245, 245",
-        strength: "0.8",
-    },
-
-    typescript: {
-        color: "69, 119, 192",
-        strength: "0.9",
-    },
+    html: { color: "211, 90, 54", strength: "0.45" },
+    css: { color: "48, 76, 220", strength: "0.5" },
+    javascript: { color: "241, 223, 79", strength: "0.6" },
+    react: { color: "161, 213, 225", strength: "0.7" },
+    nextjs: { color: "245, 245, 245", strength: "0.8" },
+    typescript: { color: "69, 119, 192", strength: "0.9" },
 };
-
-/* ================================ Hints ================================ */
 
 const demoHint = document.querySelector(".skills__demo-hint");
 const demoHintClose = document.querySelector(".skills__demo-hint-close");
@@ -591,27 +561,22 @@ const hintTranslations = {
         ru: "Создаёт основу сайта, чтобы контент был понятным и удобным для пользователей.",
         en: "Builds the basic structure of the website so all content is clear and easy to navigate.",
     },
-
     css: {
         ru: "Делает сайт красивым, адаптивным и таким, как задумано в дизайне.",
         en: "Makes the website look good, work well on different screens and match the desired design.",
     },
-
     javascript: {
         ru: "Добавляет интерактивность: слайдеры, кнопки, анимации и динамический контент.",
         en: "Adds interactive features like sliders, buttons, animations and dynamic content.",
     },
-
     react: {
         ru: "Помогает создавать сложные интерактивные элементы, которые легко изменять и поддерживать.",
         en: "Helps build complex interactive parts of the website that are easy to update and maintain.",
     },
-
     nextjs: {
         ru: "Помогает сделать сайт быстрее и добавляет возможности вроде удобной навигации и SEO.",
         en: "Helps make websites faster and adds features like page navigation and better SEO.",
     },
-
     typescript: {
         ru: "Помогает избежать ошибок и сделать код надёжнее по мере развития проекта.",
         en: "Helps prevent errors and makes the website code more reliable as the project grows.",
@@ -624,51 +589,45 @@ function hideDemoHint() {
 
 function showDemoHint(skill) {
     const language = document.documentElement.lang === "en" ? "en" : "ru";
-
     demoHintText.textContent = hintTranslations[skill][language];
-
     demoHint.classList.add("is-active");
 }
-
-/* ================================ Skills ================================ */
 
 skillCards.forEach((card) => {
     card.addEventListener("click", () => {
         const skill = card.dataset.skill;
 
         skillCards.forEach((item) => {
-            item.classList.remove("is-active");
-            item.classList.remove("is-pulse");
+            item.classList.remove("is-active", "is-pulse");
         });
 
         card.classList.add("is-active");
-
         demoFrame.classList.add("is-switching");
 
         demoWindow.style.setProperty(
             "--demo-glow-color",
             demoGlow[skill].color,
         );
-
         demoWindow.style.setProperty(
             "--demo-glow-strength",
             demoGlow[skill].strength,
         );
 
         demoFrame.src = `assets/demo/demo.html?skill=${skill}`;
-
         showDemoHint(skill);
     });
 });
 
-/* ================================ Demo Load ================================ */
-
 demoFrame.addEventListener("load", () => {
     demoFrame.classList.remove("is-switching");
 
-    demoFrame.contentDocument.addEventListener("click", hideDemoHint);
+    try {
+        demoFrame.contentDocument?.addEventListener("click", hideDemoHint, {
+            once: true,
+        });
+    } catch {
+        // Cross-origin frames cannot expose their document to the parent page.
+    }
 });
-
-/* ================================ Hint Close ================================ */
 
 demoHintClose.addEventListener("click", hideDemoHint);
