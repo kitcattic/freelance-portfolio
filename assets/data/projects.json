@@ -34,7 +34,7 @@
 
     {
         "name": "cat-game",
-        "enabled": false,
+        "enabled": true,
         "title": {
             "en": "Cat Game",
             "ru": "Cat Game"

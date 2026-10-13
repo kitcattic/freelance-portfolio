@@ -63,7 +63,7 @@
 @keyframes stepAppear {
     from {
         opacity: 0;
-        transform: translateX(300px);
+        transform: translateX(80px);
     }
 
     to {
@@ -114,6 +114,12 @@ body {
     background-color: var(--color-background);
     color: var(--color-text-primary);
     font-family: var(--font-family);
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: clip;
 }
 
 html::-webkit-scrollbar,
@@ -870,7 +876,7 @@ section {
     min-height: 150px;
 
     display: grid;
-    grid-template-columns: 40px 1fr 24px;
+    grid-template-columns: 32px 1fr;
     gap: var(--space-4);
 
     padding: var(--space-5);
@@ -895,15 +901,15 @@ section {
 }
 
 .about__step:nth-child(1) {
-    animation-delay: 0.2s;
-}
-
-.about__step:nth-child(2) {
     animation-delay: 0.4s;
 }
 
+.about__step:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
 .about__step:nth-child(3) {
-    animation-delay: 0.8s;
+    animation-delay: 1s;
 }
 
 .about__step:nth-child(4) {
@@ -911,6 +917,7 @@ section {
 }
 
 .about__step-number {
+    text-align: center;
     color: var(--color-text-primary);
     font: var(--text-h3);
 }
